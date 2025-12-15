@@ -1,0 +1,32 @@
+{
+  "name": "AI-Assisted TDD + Vibe Coding Workflow",
+  "version": "1.0.0",
+  "description": "Cursor Rule for Test-Driven Development with Vibe Coding approach",
+  "rules": {
+    "tdd_workflow": {
+      "red_green_refactor": {
+        "red": "Write a failing test first",
+        "green": "Write minimal code to make test pass",
+        "refactor": "Improve code while keeping tests green"
+      },
+      "test_first": "Always write tests before implementation",
+      "test_coverage": "Maintain high test coverage for critical paths"
+    },
+    "vibe_coding": {
+      "iterative_development": "Build features iteratively with continuous feedback",
+      "rapid_prototyping": "Create working prototypes quickly",
+      "user_feedback": "Incorporate user feedback early and often"
+    },
+    "file_structure": {
+      "source_code": "src/",
+      "tests": "tests/",
+      "documentation": "docs/"
+    },
+    "best_practices": {
+      "clean_code": "Write clean, readable, and maintainable code",
+      "documentation": "Keep documentation up to date",
+      "version_control": "Commit frequently with meaningful messages"
+    }
+  }
+}
+
