@@ -1,0 +1,14 @@
+{
+  "name": "honest-cup-backend",
+  "version": "1.0.0",
+  "description": "솔직한 한 잔 (Honest Cup) - 백엔드 애플리케이션",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Development server start script'",
+    "start": "echo 'Production server start script'",
+    "test": "echo 'Test script'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
+
