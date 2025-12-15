@@ -231,6 +231,11 @@ MVP는 3개월을 목표로 합니다.
 
 ---
 
+## To-do List
+ - TC
+ - Implementation
+ - Refactory
+
 **문서 버전**: 1.0 (MVP)  
 **최종 업데이트**: 2025-12-15
 
