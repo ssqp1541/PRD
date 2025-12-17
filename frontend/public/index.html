@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="솔직한 한 잔 (Honest Cup) - 투명하고 윤리적인 커피 소비를 위한 웹 애플리케이션">
+  <meta name="theme-color" content="#007bff">
+  <title>솔직한 한 잔 (Honest Cup)</title>
+  <style>
+    /* 기본 스타일 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #f5f5f5;
+    }
+    
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+    }
+    
+    /* 로딩 스피너 */
+    #root {
+      min-height: 100vh;
+    }
+    
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-size: 1.2rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <noscript>
+    이 애플리케이션을 실행하려면 JavaScript를 활성화해야 합니다.
+  </noscript>
+  <div id="root">
+    <div class="loading">로딩 중...</div>
+  </div>
+</body>
+</html>
+

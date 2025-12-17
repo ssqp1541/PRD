@@ -312,7 +312,7 @@ npm run test:coverage
 - [ ] 마이그레이션 파일 작성 (`database/migrations/`)
 - [ ] 시드 데이터 생성 (`database/seeds/`)
 
-**2. 인증 시스템** (기반 기능) _ 작업완료
+**2. 인증 시스템** (기반 기능)
 - [ ] 백엔드 인증 모듈 (`modules/auth/`)
   - [ ] 회원가입 API
   - [ ] 로그인 API
@@ -324,7 +324,7 @@ npm run test:coverage
   - [ ] 회원가입 페이지
   - [ ] 인증 상태 관리
 
-**3. Express/React 기본 구조**
+**3. Express/React 기본 구조** _ 작업완료
 - [ ] Express 서버 설정 (`backend/src/app.js`)
 - [ ] 라우팅 구조
 - [ ] 미들웨어 설정
