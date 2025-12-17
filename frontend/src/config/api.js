@@ -14,5 +14,8 @@ export default {
   PRODUCTS: {
     TRACKING: (productId) => `${API_BASE_URL}/api/products/${productId}/tracking`,
   },
+  USERS: {
+    ETHICAL_IMPACT: (userId) => `${API_BASE_URL}/api/users/${userId}/ethical-impact`,
+  },
 };
 

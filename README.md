@@ -347,7 +347,7 @@ npm run test:coverage
   - [ ] '원두 스토리 추적' 탭 UI
   - [ ] 데이터 로딩 및 에러 처리
 
-**5. FR2: 윤리 영향 리포트 구현** (Green 단계)
+**5. FR2: 윤리 영향 리포트 구현** (Green 단계) ) _ 작업완료
 - [ ] 백엔드 API 구현
   - [ ] `GET /api/users/:userId/ethical-impact` 엔드포인트
   - [ ] EthicalImpactController 구현

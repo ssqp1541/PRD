@@ -26,7 +26,7 @@ function MyPage() {
 
       <section style={styles.section}>
         <h2 style={styles.sectionTitle}>나의 윤리적 영향</h2>
-        <EthicalImpact />
+        <EthicalImpact userId={user?.id} />
       </section>
 
       <section style={styles.section}>
