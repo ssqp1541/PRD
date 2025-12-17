@@ -11,5 +11,8 @@ export default {
     REGISTER: `${API_BASE_URL}/api/auth/register`,
     LOGIN: `${API_BASE_URL}/api/auth/login`,
   },
+  PRODUCTS: {
+    TRACKING: (productId) => `${API_BASE_URL}/api/products/${productId}/tracking`,
+  },
 };
 

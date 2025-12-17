@@ -332,7 +332,7 @@ npm run test:coverage
 - [ ] 라우팅 설정 (React Router)
 - [ ] 상태 관리 설정
 
-**4. FR1: 투명 정보 추적 구현** (Green 단계)
+**4. FR1: 투명 정보 추적 구현** (Green 단계) _ 작업완료
 - [ ] 백엔드 API 구현
   - [ ] `GET /api/products/:id/tracking` 엔드포인트
   - [ ] ProductTrackingController 구현
