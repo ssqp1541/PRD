@@ -209,6 +209,313 @@ Coffee/
 - **모바일 최적화**: 웹 앱은 모든 주요 모바일 디바이스에서 레이아웃이 깨지지 않고 정상적으로 작동해야 한다.
 - **직관적 내비게이션**: '장바구니', '결제', '마이페이지' 등 핵심 액션은 최대 3클릭 이내로 접근 가능해야 한다.
 
+## 🚀 실행 방법
+
+### 사전 요구사항
+
+다음 소프트웨어가 설치되어 있어야 합니다:
+
+- **Node.js**: v16 이상
+- **npm**: v8 이상 (또는 yarn)
+- **PostgreSQL**: v12 이상
+- **Git**: 최신 버전
+
+### 1. 프로젝트 클론 및 설치
+
+```bash
+# 저장소 클론
+git clone <repository-url>
+cd Coffee
+
+# 백엔드 의존성 설치
+cd backend
+npm install
+
+# 프론트엔드 의존성 설치
+cd ../frontend
+npm install
+```
+
+> **중요**: 프론트엔드 의존성 설치가 완료되지 않으면 `react-scripts` 오류가 발생할 수 있습니다. `npm install`이 완료될 때까지 기다려주세요.
+
+### 2. 환경 변수 설정
+
+#### 백엔드 환경 변수 설정
+
+`backend/.env` 파일을 생성하고 다음 내용을 추가합니다:
+
+```env
+# 서버 설정
+NODE_ENV=development
+PORT=3000
+
+# 데이터베이스 설정
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=honest_cup
+DB_USER=postgres
+DB_PASSWORD=password
+
+# JWT 설정
+JWT_SECRET=your-secret-key-change-in-production
+JWT_EXPIRES_IN=24h
+
+# CORS 설정
+CORS_ORIGIN=http://localhost:3000
+```
+
+#### 프론트엔드 환경 변수 설정
+
+`frontend/.env` 파일을 생성하고 다음 내용을 추가합니다:
+
+```env
+REACT_APP_API_URL=http://localhost:3000
+```
+
+> **보안 주의사항**: `.env` 파일은 절대 Git에 커밋하지 마세요. `.gitignore`에 이미 포함되어 있습니다.
+
+### 3. 데이터베이스 설정
+
+#### PostgreSQL 데이터베이스 생성
+
+```bash
+# PostgreSQL 접속
+psql -U postgres
+
+# 데이터베이스 생성
+CREATE DATABASE honest_cup;
+
+# 종료
+\q
+```
+
+또는 명령줄에서:
+
+```bash
+createdb -U postgres honest_cup
+```
+
+#### 데이터베이스 마이그레이션 실행
+
+```bash
+# 백엔드 디렉토리로 이동
+cd backend
+
+# 마이그레이션 파일 실행
+# PostgreSQL에 직접 접속하여 실행하거나, psql을 사용합니다
+psql -U postgres -d honest_cup -f database/migrations/001_create_users_table.sql
+psql -U postgres -d honest_cup -f database/migrations/002_create_partners_table.sql
+psql -U postgres -d honest_cup -f database/migrations/003_create_products_table.sql
+psql -U postgres -d honest_cup -f database/migrations/004_create_orders_table.sql
+psql -U postgres -d honest_cup -f database/migrations/005_create_purchases_table.sql
+psql -U postgres -d honest_cup -f database/migrations/006_create_tracking_table.sql
+psql -U postgres -d honest_cup -f database/migrations/007_create_batches_table.sql
+psql -U postgres -d honest_cup -f database/migrations/008_add_indexes.sql
+```
+
+또는 모든 마이그레이션을 한 번에 실행:
+
+```bash
+# database/schemas/schema.sql 파일이 있다면
+psql -U postgres -d honest_cup -f database/schemas/schema.sql
+```
+
+#### 시드 데이터 추가 (선택사항)
+
+테스트를 위한 샘플 데이터를 추가합니다:
+
+```bash
+psql -U postgres -d honest_cup -f database/seeds/seed_all.sql
+```
+
+### 4. 백엔드 서버 실행
+
+```bash
+# 백엔드 디렉토리로 이동
+cd backend
+
+# 개발 서버 실행 (nodemon 사용)
+npm run dev
+
+# 또는 프로덕션 모드로 실행
+npm start
+```
+
+백엔드 서버는 기본적으로 **http://localhost:3000** 에서 실행됩니다.
+
+서버가 정상적으로 시작되면 다음과 같은 메시지가 표시됩니다:
+
+```
+============================================
+서버가 시작되었습니다!
+============================================
+환경: development
+포트: 3000
+URL: http://localhost:3000
+============================================
+```
+
+### 5. 프론트엔드 애플리케이션 실행
+
+새 터미널 창에서:
+
+```bash
+# 프론트엔드 디렉토리로 이동
+cd frontend
+
+# 개발 서버 실행
+npm start
+# 또는
+npm run dev
+```
+
+프론트엔드 애플리케이션은 기본적으로 **http://localhost:3000** (또는 다른 포트)에서 실행됩니다.
+
+> **참고**: React 개발 서버는 자동으로 브라우저를 열고, 코드 변경 시 자동으로 새로고침됩니다. `npm start`와 `npm run dev`는 동일하게 작동합니다.
+
+> **참고**: React 개발 서버는 자동으로 브라우저를 열고, 코드 변경 시 자동으로 새로고침됩니다.
+
+### 6. 애플리케이션 접속
+
+브라우저에서 다음 URL로 접속합니다:
+
+- **프론트엔드**: http://localhost:3000
+- **백엔드 API**: http://localhost:3000/api
+
+### 실행 확인
+
+#### 백엔드 API 확인
+
+```bash
+# API 헬스 체크
+curl http://localhost:3000/
+
+# 또는 브라우저에서 접속
+# http://localhost:3000/
+```
+
+#### 프론트엔드 확인
+
+브라우저에서 http://localhost:3000 에 접속하여 애플리케이션이 정상적으로 로드되는지 확인합니다.
+
+### 문제 해결
+
+#### 포트 충돌
+
+포트가 이미 사용 중인 경우:
+
+**Windows:**
+```bash
+netstat -ano | findstr :3000
+```
+
+**Linux/macOS:**
+```bash
+lsof -i :3000
+```
+
+`.env` 파일에서 `PORT` 값을 변경하거나, 사용 중인 프로세스를 종료합니다.
+
+#### 데이터베이스 연결 오류
+
+1. PostgreSQL 서비스가 실행 중인지 확인합니다.
+2. `.env` 파일의 데이터베이스 설정이 올바른지 확인합니다.
+3. 데이터베이스가 생성되었는지 확인합니다.
+
+```bash
+# PostgreSQL 서비스 상태 확인 (Linux)
+sudo systemctl status postgresql
+
+# 데이터베이스 목록 확인
+psql -U postgres -l
+```
+
+#### 의존성 설치 오류
+
+**Windows:**
+```bash
+# node_modules 삭제 후 재설치
+rmdir /s /q node_modules
+del package-lock.json
+npm install
+```
+
+**Linux/macOS:**
+```bash
+# node_modules 삭제 후 재설치
+rm -rf node_modules package-lock.json
+npm install
+```
+
+#### react-scripts 오류
+
+`react-scripts'은(는) 내부 또는 외부 명령...` 오류가 발생하는 경우:
+
+```bash
+# 프론트엔드 디렉토리로 이동
+cd frontend
+
+# 의존성 재설치
+npm install
+
+# react-scripts가 설치되었는지 확인
+npm list react-scripts
+```
+
+여전히 문제가 발생하면:
+
+```bash
+# 캐시 정리 후 재설치
+npm cache clean --force
+rmdir /s /q node_modules  # Windows
+del package-lock.json    # Windows
+# 또는
+rm -rf node_modules package-lock.json  # Linux/macOS
+npm install
+```
+
+#### browserslist 경고
+
+`We're unable to detect target browsers` 경고가 나타나는 경우:
+
+이 경고는 무시해도 되지만, `package.json`에 `browserslist` 설정이 추가되어 있으면 자동으로 해결됩니다. 
+
+경고가 나타나면:
+- **Y 입력**: package.json에 기본 browserslist 설정이 자동으로 추가됩니다
+- **n 입력**: 경고를 무시하고 계속 진행됩니다
+
+또는 수동으로 `package.json`에 `browserslist` 설정을 추가할 수 있습니다 (이미 추가되어 있음).
+
+#### 로그 파일 확인
+
+백엔드 로그는 `backend/logs/` 디렉토리에 저장됩니다:
+
+```bash
+# 최신 에러 로그 확인
+tail -f backend/logs/error-$(date +%Y-%m-%d).log
+
+# 최신 통합 로그 확인
+tail -f backend/logs/combined-$(date +%Y-%m-%d).log
+```
+
+### 프로덕션 빌드
+
+#### 프론트엔드 빌드
+
+```bash
+cd frontend
+npm run build
+```
+
+빌드된 파일은 `frontend/build/` 디렉토리에 생성됩니다.
+
+#### 백엔드 프로덕션 실행
+
+```bash
+cd backend
+NODE_ENV=production npm start
+```
+
 ## 🧪 테스트 실행
 
 프로젝트는 TDD (Test-Driven Development) 방법론을 사용합니다. 현재 **Red 단계**로 실패하는 테스트가 작성되어 있습니다.
