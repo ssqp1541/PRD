@@ -300,7 +300,7 @@ npm run test:coverage
 
 #### 🔴 P0: Critical (즉시 구현 필요)
 
-**1. 데이터베이스 스키마 설계** (최우선)
+**1. 데이터베이스 스키마 설계** (최우선) _ 작업 완료
 - [ ] PostgreSQL 스키마 정의 (`database/schemas/`)
   - [ ] User 테이블
   - [ ] Product 테이블
