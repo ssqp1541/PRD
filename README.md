@@ -385,19 +385,19 @@ npm run test:coverage
   - [x] 검색 결과 리스트
   - [x] 주문/결제 프로세스 (기본 구조)
 
-**2. 공통 컴포넌트**
-- [ ] Button, Input, Modal 컴포넌트
-- [ ] Loading Spinner, Error Message
-- [ ] Header/Navigation, Footer
+**2. 공통 컴포넌트** _ 작업 완료
+- [x] Button, Input, Modal 컴포넌트
+- [x] Loading Spinner, Error Message
+- [x] Header/Navigation, Footer (반응형 개선)
 
-**3. 성능 최적화**
-- [ ] 이미지 WebP 형식 변환
-- [ ] 지연 로딩 (Lazy Loading) 구현
-- [ ] 데이터베이스 인덱싱
+**3. 성능 최적화** _ 작업 완료
+- [x] 이미지 WebP 형식 변환
+- [x] 지연 로딩 (Lazy Loading) 구현
+- [x] 데이터베이스 인덱싱
 
-**4. 모바일 최적화**
-- [ ] 반응형 디자인 구현
-- [ ] 모바일 레이아웃 테스트
+**4. 모바일 최적화** _ 작업 완료
+- [x] 반응형 디자인 구현
+- [x] 모바일 레이아웃 테스트 (기본 반응형 확인)
 
 #### 🟡 P2: Medium (단계적 구현)
 

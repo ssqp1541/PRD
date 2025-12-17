@@ -1,6 +1,6 @@
 /**
  * ProductSearch 컴포넌트
- * 상품 검색 페이지 컴포넌트
+ * 상품 검색 페이지 컴포넌트 (반응형 지원)
  */
 
 import React, { useState, useEffect } from 'react';
@@ -18,10 +18,21 @@ function ProductSearch() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   // 초기 로드 시 모든 상품 조회
   useEffect(() => {
     loadProducts();
+  }, []);
+
+  // 화면 크기 감지 (반응형)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const loadProducts = async (searchFilters = {}) => {
@@ -78,9 +89,9 @@ function ProductSearch() {
         원하는 조건에 맞는 윤리적인 원두를 찾아보세요.
       </p>
 
-      <div style={styles.layout}>
+      <div style={isMobile ? styles.layoutMobile : styles.layout}>
         {/* 필터 섹션 */}
-        <aside style={styles.sidebar}>
+        <aside style={isMobile ? styles.sidebarMobile : styles.sidebar}>
           <ProductFilter
             filters={filters}
             onFilterChange={handleFilterChange}
@@ -143,9 +154,19 @@ const styles = {
     gridTemplateColumns: '250px 1fr',
     gap: '2rem',
   },
+  layoutMobile: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.5rem',
+  },
   sidebar: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  sidebarMobile: {
+    display: 'flex',
+    flexDirection: 'column',
+    order: 1,
   },
   searchButton: {
     width: '100%',

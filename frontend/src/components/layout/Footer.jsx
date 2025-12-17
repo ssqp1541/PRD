@@ -1,17 +1,28 @@
 /**
  * 푸터 컴포넌트
- * 푸터 정보 및 저작권 표시
+ * 푸터 정보 및 저작권 표시 (반응형 지원)
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // 화면 크기 감지 (반응형)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <footer style={styles.footer}>
       <div style={styles.container}>
-        <div style={styles.content}>
+        <div style={isMobile ? { ...styles.content, gridTemplateColumns: '1fr', gap: '1.5rem' } : styles.content}>
           <div style={styles.section}>
             <h3 style={styles.title}>솔직한 한 잔</h3>
             <p style={styles.description}>
