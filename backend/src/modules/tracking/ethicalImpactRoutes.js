@@ -6,12 +6,13 @@
 const express = require('express');
 const router = express.Router();
 const EthicalImpactController = require('./ethicalImpactController');
+const { validateNumericId } = require('../../middleware/validator');
 
 /**
  * GET /api/users/:userId/ethical-impact
  * 사용자 윤리 영향 리포트 조회
  */
-router.get('/:userId/ethical-impact', EthicalImpactController.getEthicalImpact);
+router.get('/:userId/ethical-impact', validateNumericId('userId'), EthicalImpactController.getEthicalImpact);
 
 module.exports = router;
 

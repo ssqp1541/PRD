@@ -6,14 +6,22 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./config');
 const { requestLogger, errorLogger } = require('./middleware/logger');
+const { setupSecurityHeaders } = require('./middleware/security');
+const { sanitizeAll } = require('./middleware/sanitizer');
 const apiRoutes = require('./routes');
 
 const app = express();
+
+// 보안 헤더 설정 (가장 먼저 적용)
+setupSecurityHeaders(app);
 
 // 미들웨어 설정
 app.use(cors(config.cors)); // CORS 활성화
 app.use(express.json()); // JSON 파싱
 app.use(express.urlencoded({ extended: true })); // URL 인코딩된 데이터 파싱
+
+// 입력 sanitization (XSS 방어)
+app.use(sanitizeAll);
 
 // 로깅 미들웨어 (라우트 처리 전에 위치)
 app.use(requestLogger);

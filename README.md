@@ -364,7 +364,7 @@ npm run test:coverage
   - [ ] 월별 집계 차트/그래프
   - [ ] 로딩 및 에러 상태 처리
 
-**6. 보안 요구사항**
+**6. 보안 요구사항** _ 작업완료
 - [ ] 비밀번호 해시 함수 (bcrypt) 구현
 - [ ] JWT 토큰 암호화
 - [ ] SQL Injection 방어 (ORM 사용 또는 Prepared Statement)
