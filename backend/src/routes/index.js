@@ -10,6 +10,7 @@ const router = express.Router();
 const authRoutes = require('../modules/auth/authRoutes');
 const productTrackingRoutes = require('../modules/tracking/productTrackingRoutes');
 const ethicalImpactRoutes = require('../modules/tracking/ethicalImpactRoutes');
+const partnerRoutes = require('../modules/partner/partnerRoutes');
 
 // API 버전 관리
 // 향후 API 버전이 변경될 때를 대비하여 /api/v1 구조 사용
@@ -32,9 +33,14 @@ router.use('/products', productTrackingRoutes);
  */
 router.use('/users', ethicalImpactRoutes);
 
+/**
+ * 파트너 관련 라우트
+ * /api/partner/*
+ */
+router.use('/partner', partnerRoutes);
+
 // 향후 추가될 라우트들
 // router.use('/orders', orderRoutes);
-// router.use('/partners', partnerRoutes);
 // router.use('/admin', adminRoutes);
 
 module.exports = router;

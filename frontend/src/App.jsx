@@ -21,6 +21,7 @@ const ProductList = lazy(() => import('./pages/Product/ProductList'));
 const ProductSearch = lazy(() => import('./pages/Product/ProductSearch'));
 const Order = lazy(() => import('./pages/Order/Order'));
 const MyPage = lazy(() => import('./pages/MyPage/MyPage'));
+const PartnerDashboard = lazy(() => import('./pages/Partner/PartnerDashboard'));
 
 function App() {
   return (
@@ -91,6 +92,19 @@ function App() {
                 <Layout>
                   <Suspense fallback={<LoadingSpinner fullScreen message="페이지를 불러오는 중..." />}>
                     <MyPage />
+                  </Suspense>
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
+            path="/partner"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Suspense fallback={<LoadingSpinner fullScreen message="페이지를 불러오는 중..." />}>
+                    <PartnerDashboard />
                   </Suspense>
                 </Layout>
               </ProtectedRoute>
