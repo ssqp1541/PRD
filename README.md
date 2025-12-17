@@ -312,7 +312,7 @@ npm run test:coverage
 - [ ] 마이그레이션 파일 작성 (`database/migrations/`)
 - [ ] 시드 데이터 생성 (`database/seeds/`)
 
-**2. 인증 시스템** (기반 기능)
+**2. 인증 시스템** (기반 기능) _ 작업완료
 - [ ] 백엔드 인증 모듈 (`modules/auth/`)
   - [ ] 회원가입 API
   - [ ] 로그인 API
