@@ -11,6 +11,7 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Home from './pages/Home/Home';
 import ProductList from './pages/Product/ProductList';
+import ProductSearch from './pages/Product/ProductSearch';
 import Order from './pages/Order/Order';
 import MyPage from './pages/MyPage/MyPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
@@ -42,6 +43,17 @@ function App() {
               <ProtectedRoute>
                 <Layout>
                   <ProductList />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
+            path="/products/search"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <ProductSearch />
                 </Layout>
               </ProtectedRoute>
             }
