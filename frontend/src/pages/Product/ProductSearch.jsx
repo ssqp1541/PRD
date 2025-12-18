@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { searchProducts } from '../../services/api/productApi';
 import ProductFilter from '../../components/product/ProductFilter';
 import ProductList from '../../components/product/ProductList';
+import { useResponsive } from '../../hooks/useResponsive';
 
 function ProductSearch() {
   const [filters, setFilters] = useState({
@@ -18,21 +19,11 @@ function ProductSearch() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const isMobile = useResponsive(768);
 
   // 초기 로드 시 모든 상품 조회
   useEffect(() => {
     loadProducts();
-  }, []);
-
-  // 화면 크기 감지 (반응형)
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const loadProducts = async (searchFilters = {}) => {

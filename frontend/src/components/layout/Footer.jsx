@@ -3,21 +3,12 @@
  * 푸터 정보 및 저작권 표시 (반응형 지원)
  */
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useResponsive } from '../../hooks/useResponsive';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  // 화면 크기 감지 (반응형)
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const isMobile = useResponsive(768);
 
   return (
     <footer style={styles.footer}>

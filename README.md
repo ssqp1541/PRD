@@ -750,6 +750,109 @@ npm run test:coverage
 
 자세한 내용은 [구현 우선순위 목록](Report/IMPLEMENTATION_PRIORITY.md)을 참고하세요.
 
+### 🔵 Refactor 단계: 프런트엔드 코드 리팩토링
+
+프런트엔드 코드베이스 분석 결과, 코드 스멜과 개선점을 발견했습니다. 리팩토링 작업을 우선순위별로 정리했습니다.
+
+자세한 분석 내용은 [프런트엔드 리팩토링 분석 보고서](docs/FRONTEND_REFACTORING_ANALYSIS.md)를 참고하세요.
+
+#### 🔴 Phase 1: 긴급 수정 (1주 이내)
+
+**1. API 토큰 관리 통일**
+- [ ] `services/api/partnerApi.js`에서 `localStorage.getItem('token')` 제거
+- [ ] `authApi`의 `getToken()` 함수 사용 또는 axios 인터셉터 활용
+- [ ] 토큰 키 불일치 해결 (`'token'` vs `'honest_cup_token'`)
+
+**2. ProtectedRoute 로딩 상태 개선**
+- [ ] `components/common/ProtectedRoute.jsx`에서 단순 텍스트 제거
+- [ ] `LoadingSpinner` 컴포넌트 적용
+- [ ] 일관된 로딩 UI 제공
+
+**3. 에러 처리 패턴 통일**
+- [ ] `ProductSearch.jsx`에서 인라인 스타일 에러 표시를 `ErrorMessage` 컴포넌트로 변경
+- [ ] `EthicalImpact.jsx`에서 인라인 스타일 에러 표시를 `ErrorMessage` 컴포넌트로 변경
+- [ ] `ProductTracking.jsx`에서 인라인 스타일 에러 표시를 `ErrorMessage` 컴포넌트로 변경
+- [ ] 모든 컴포넌트에서 에러 표시 방식 통일
+
+#### 🟡 Phase 2: 중요 개선 (2-3주)
+
+**4. 반응형 로직 커스텀 훅 추출** _ 작업완료
+- [ ] `hooks/useResponsive.js` 커스텀 훅 생성
+- [ ] `Header.jsx`에서 중복된 반응형 로직 제거 및 `useResponsive` 적용
+- [ ] `ProductSearch.jsx`에서 중복된 반응형 로직 제거 및 `useResponsive` 적용
+- [ ] `ProductList.jsx`에서 중복된 반응형 로직 제거 및 `useResponsive` 적용
+- [ ] `Footer.jsx`에서 중복된 반응형 로직 제거 및 `useResponsive` 적용
+
+**5. 공통 로직 커스텀 훅화**
+- [ ] `hooks/useErrorHandler.js` 커스텀 훅 생성 (에러 처리 로직 통합)
+- [ ] `hooks/useAsync.js` 커스텀 훅 생성 (비동기 데이터 로딩 패턴 통합)
+- [ ] 각 컴포넌트에서 공통 로직을 커스텀 훅으로 교체
+
+**6. 상수 파일 생성**
+- [ ] `constants/breakpoints.js` 생성 (브레이크포인트 값 통합: 768, 1024 등)
+- [ ] `constants/theme.js` 생성 (색상, 폰트, 간격 등 테마 값 통합)
+- [ ] 하드코딩된 값들을 상수로 교체
+
+**7. useEffect 의존성 배열 수정**
+- [ ] `EthicalImpact.jsx`에서 `loadEthicalImpact` 함수를 `useCallback`으로 메모이제이션
+- [ ] `ProductTracking.jsx`에서 `loadTrackingData` 함수를 `useCallback`으로 메모이제이션
+- [ ] 모든 `useEffect`의 의존성 배열 검증 및 수정
+- [ ] ESLint 경고 해결
+
+#### 🟢 Phase 3: 장기 개선 (1-2개월)
+
+**8. 스타일 시스템 개선**
+- [ ] CSS-in-JS 라이브러리 도입 (styled-components 또는 emotion) 또는 CSS Modules 도입
+- [ ] 인라인 스타일 객체를 스타일 시스템으로 마이그레이션
+- [ ] 공통 스타일을 별도 파일로 분리
+- [ ] 테마 관리 시스템 구축
+
+**9. 타입 안정성 강화**
+- [ ] PropTypes 도입 또는 TypeScript 마이그레이션 검토
+- [ ] 모든 컴포넌트에 props 타입 검증 추가
+- [ ] 타입 정의 파일 생성
+
+**10. 성능 최적화**
+- [ ] `React.memo`로 불필요한 리렌더링 방지
+- [ ] `useCallback`으로 인라인 함수 메모이제이션
+- [ ] `useMemo`로 객체/배열 메모이제이션
+- [ ] 성능 프로파일링 및 최적화
+
+**11. 접근성 (A11y) 개선**
+- [ ] 모든 인터랙티브 요소에 적절한 ARIA 속성 추가
+- [ ] 키보드 네비게이션 테스트 및 개선
+- [ ] 포커스 관리 개선
+- [ ] 스크린 리더 호환성 테스트
+
+**12. 테스트 커버리지 향상**
+- [ ] 누락된 컴포넌트 테스트 추가
+- [ ] 테스트 커버리지 목표 설정 (80% 이상)
+- [ ] 통합 테스트 추가
+
+**13. 환경 변수 관리 개선**
+- [ ] `.env.example` 파일 생성
+- [ ] 환경 변수 문서화
+- [ ] `config/api.js`에서 하드코딩된 기본값 제거
+
+**14. 코드 문서화**
+- [ ] 모든 컴포넌트와 함수에 JSDoc 주석 추가
+- [ ] 복잡한 비즈니스 로직에 상세 설명 추가
+- [ ] 컴포넌트 사용 예시 문서화
+
+### 리팩토링 예상 소요 시간
+
+| Phase | 예상 시간 | 기간 |
+|-------|----------|------|
+| **Phase 1 (긴급 수정)** | 4-6시간 | 1일 |
+| **Phase 2 (중요 개선)** | 16-24시간 | 2-3일 |
+| **Phase 3 (장기 개선)** | 40-60시간 | 1-2주 |
+
+### 리팩토링 우선순위 권장사항
+
+1. **Phase 1 완료** → 즉시 사용자 경험 개선 및 버그 예방
+2. **Phase 2 완료** → 코드 유지보수성 향상 및 개발 생산성 증대
+3. **Phase 3 완료** → 장기적인 코드 품질 및 확장성 확보
+
 ## 📅 일정 및 마일스톤
 
 MVP는 3개월을 목표로 합니다.

@@ -3,21 +3,15 @@
  * 상품 리스트 표시 컴포넌트 (반응형 지원)
  */
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useResponsive } from '../../hooks/useResponsive';
+import { BREAKPOINTS } from '../../constants/breakpoints';
 
 function ProductList({ products, onProductClick }) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const isMobile = useResponsive(BREAKPOINTS.MOBILE);
+  const isTablet = useResponsive(BREAKPOINTS.TABLET);
 
-  // 화면 크기 감지 (반응형)
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
   if (!products || products.length === 0) {
     return (
       <div style={styles.emptyState}>
@@ -31,7 +25,7 @@ function ProductList({ products, onProductClick }) {
 
   const gridStyle = isMobile
     ? { ...styles.grid, gridTemplateColumns: '1fr' }
-    : window.innerWidth <= 1024
+    : isTablet
     ? { ...styles.grid, gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))' }
     : styles.grid;
 
