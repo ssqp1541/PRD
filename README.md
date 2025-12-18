@@ -763,7 +763,7 @@ npm run test:coverage
 - [ ] `authApi`의 `getToken()` 함수 사용 또는 axios 인터셉터 활용
 - [ ] 토큰 키 불일치 해결 (`'token'` vs `'honest_cup_token'`)
 
-**2. ProtectedRoute 로딩 상태 개선**
+**2. ProtectedRoute 로딩 상태 개선** _ 작업완료
 - [ ] `components/common/ProtectedRoute.jsx`에서 단순 텍스트 제거
 - [ ] `LoadingSpinner` 컴포넌트 적용
 - [ ] 일관된 로딩 UI 제공
