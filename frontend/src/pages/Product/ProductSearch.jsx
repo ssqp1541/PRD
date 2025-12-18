@@ -178,18 +178,6 @@ const styles = {
   main: {
     minHeight: '400px',
   },
-  loading: {
-    padding: '2rem',
-    textAlign: 'center',
-    color: '#666',
-  },
-  error: {
-    padding: '2rem',
-    backgroundColor: '#fee',
-    color: '#c33',
-    borderRadius: '4px',
-    textAlign: 'center',
-  },
   resultHeader: {
     marginBottom: '1.5rem',
   },

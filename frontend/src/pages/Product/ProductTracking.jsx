@@ -152,18 +152,6 @@ const styles = {
   content: {
     minHeight: '400px',
   },
-  loading: {
-    padding: '2rem',
-    textAlign: 'center',
-    color: '#666',
-  },
-  error: {
-    padding: '2rem',
-    backgroundColor: '#fee',
-    color: '#c33',
-    borderRadius: '4px',
-    textAlign: 'center',
-  },
   trackingInfo: {
     display: 'flex',
     flexDirection: 'column',

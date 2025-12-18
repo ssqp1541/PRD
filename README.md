@@ -768,7 +768,7 @@ npm run test:coverage
 - [ ] `LoadingSpinner` 컴포넌트 적용
 - [ ] 일관된 로딩 UI 제공
 
-**3. 에러 처리 패턴 통일**
+**3. 에러 처리 패턴 통일** _ 작업완료
 - [ ] `ProductSearch.jsx`에서 인라인 스타일 에러 표시를 `ErrorMessage` 컴포넌트로 변경
 - [ ] `EthicalImpact.jsx`에서 인라인 스타일 에러 표시를 `ErrorMessage` 컴포넌트로 변경
 - [ ] `ProductTracking.jsx`에서 인라인 스타일 에러 표시를 `ErrorMessage` 컴포넌트로 변경
