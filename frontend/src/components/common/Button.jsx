@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { colors, fontSizes, fontWeights, spacing, borderRadius, transitions } from '../../constants/theme';
 
 function Button({
   variant = 'primary',
@@ -17,38 +18,38 @@ function Button({
   ...props
 }) {
   const baseStyle = {
-    padding: size === 'small' ? '0.5rem 1rem' : size === 'large' ? '1rem 2rem' : '0.75rem 1.5rem',
-    fontSize: size === 'small' ? '0.875rem' : size === 'large' ? '1.125rem' : '1rem',
-    fontWeight: '500',
+    padding: size === 'small' ? `${spacing.sm} ${spacing.base}` : size === 'large' ? `${spacing.base} ${spacing.xl}` : `${spacing.md} ${spacing.lg}`,
+    fontSize: size === 'small' ? fontSizes.sm : size === 'large' ? fontSizes.lg : fontSizes.base,
+    fontWeight: fontWeights.medium,
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: borderRadius.sm,
     cursor: disabled || loading ? 'not-allowed' : 'pointer',
-    transition: 'all 0.2s',
+    transition: `all ${transitions.base}`,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '0.5rem',
+    gap: spacing.sm,
     opacity: disabled ? 0.6 : 1,
     ...style,
   };
 
   const variantStyles = {
     primary: {
-      backgroundColor: '#007bff',
-      color: 'white',
+      backgroundColor: colors.primary,
+      color: colors.text.inverse,
     },
     secondary: {
-      backgroundColor: '#6c757d',
-      color: 'white',
+      backgroundColor: colors.secondary,
+      color: colors.text.inverse,
     },
     danger: {
-      backgroundColor: '#dc3545',
-      color: 'white',
+      backgroundColor: colors.danger,
+      color: colors.text.inverse,
     },
     outline: {
       backgroundColor: 'transparent',
-      color: '#007bff',
-      border: '1px solid #007bff',
+      color: colors.primary,
+      border: `1px solid ${colors.primary}`,
     },
   };
 

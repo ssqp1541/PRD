@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { colors, fontSizes, fontWeights, spacing, borderRadius, transitions } from '../../constants/theme';
 
 function Input({
   type = 'text',
@@ -19,37 +20,37 @@ function Input({
 }) {
   const inputStyle = {
     width: '100%',
-    padding: '0.75rem',
-    fontSize: '1rem',
-    border: error ? '1px solid #dc3545' : '1px solid #ced4da',
-    borderRadius: '4px',
-    transition: 'border-color 0.2s',
+    padding: spacing.md,
+    fontSize: fontSizes.base,
+    border: error ? `1px solid ${colors.danger}` : `1px solid ${colors.border.medium}`,
+    borderRadius: borderRadius.sm,
+    transition: `border-color ${transitions.base}`,
     outline: 'none',
-    backgroundColor: disabled ? '#e9ecef' : 'white',
+    backgroundColor: disabled ? colors.background.light : colors.background.white,
     cursor: disabled ? 'not-allowed' : 'text',
     ...style,
   };
 
   const labelStyle = {
     display: 'block',
-    marginBottom: '0.5rem',
-    fontSize: '0.9rem',
-    fontWeight: '500',
-    color: '#333',
+    marginBottom: spacing.sm,
+    fontSize: fontSizes.sm,
+    fontWeight: fontWeights.medium,
+    color: colors.text.primary,
   };
 
   const errorStyle = {
-    marginTop: '0.25rem',
-    fontSize: '0.875rem',
-    color: '#dc3545',
+    marginTop: spacing.xs,
+    fontSize: fontSizes.sm,
+    color: colors.danger,
   };
 
   return (
-    <div style={{ marginBottom: '1rem' }}>
+    <div style={{ marginBottom: spacing.base }}>
       {label && (
         <label style={labelStyle}>
           {label}
-          {required && <span style={{ color: '#dc3545', marginLeft: '0.25rem' }}>*</span>}
+          {required && <span style={{ color: colors.danger, marginLeft: spacing.xs }}>*</span>}
         </label>
       )}
       <input

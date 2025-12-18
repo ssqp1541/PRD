@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { colors, fontSizes, spacing, borderRadius } from '../../constants/theme';
 
 function ErrorMessage({
   message,
@@ -13,26 +14,26 @@ function ErrorMessage({
 }) {
   const typeStyles = {
     error: {
-      backgroundColor: '#fee',
-      borderColor: '#dc3545',
-      color: '#721c24',
+      backgroundColor: colors.dangerBg,
+      borderColor: colors.danger,
+      color: colors.dangerDark,
     },
     warning: {
-      backgroundColor: '#fff3cd',
-      borderColor: '#ffc107',
-      color: '#856404',
+      backgroundColor: colors.warningBg,
+      borderColor: colors.warning,
+      color: colors.warningDark,
     },
     info: {
-      backgroundColor: '#d1ecf1',
-      borderColor: '#17a2b8',
-      color: '#0c5460',
+      backgroundColor: colors.infoBg,
+      borderColor: colors.info,
+      color: colors.infoDark,
     },
   };
 
   const containerStyle = {
-    padding: '0.75rem 1rem',
+    padding: `${spacing.md} ${spacing.base}`,
     border: '1px solid',
-    borderRadius: '4px',
+    borderRadius: borderRadius.sm,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -43,16 +44,33 @@ function ErrorMessage({
   const messageStyle = {
     flex: 1,
     margin: 0,
-    fontSize: '0.9rem',
+    fontSize: fontSizes.sm,
+  };
+
+  const containerStyle = {
+    padding: `${spacing.md} ${spacing.base}`,
+    border: '1px solid',
+    borderRadius: borderRadius.sm,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    ...typeStyles[type],
+    ...style,
+  };
+
+  const messageStyle = {
+    flex: 1,
+    margin: 0,
+    fontSize: fontSizes.sm,
   };
 
   const closeButtonStyle = {
     background: 'none',
     border: 'none',
-    fontSize: '1.2rem',
+    fontSize: fontSizes.xl,
     cursor: 'pointer',
     padding: 0,
-    marginLeft: '1rem',
+    marginLeft: spacing.base,
     color: 'inherit',
     opacity: 0.7,
   };
