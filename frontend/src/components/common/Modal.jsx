@@ -3,7 +3,7 @@
  * 다이얼로그/팝업 모달 컴포넌트
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 
 function Modal({
   isOpen,
@@ -14,14 +14,17 @@ function Modal({
   closeOnOverlayClick = true,
   size = 'medium',
 }) {
-  useEffect(() => {
-    // ESC 키로 모달 닫기
-    const handleEscape = (e) => {
+  // ESC 키 핸들러를 메모이제이션
+  const handleEscape = useCallback(
+    (e) => {
       if (e.key === 'Escape' && isOpen) {
         onClose();
       }
-    };
+    },
+    [isOpen, onClose]
+  );
 
+  useEffect(() => {
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       // 모달이 열릴 때 body 스크롤 방지
@@ -32,7 +35,7 @@ function Modal({
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, handleEscape]);
 
   if (!isOpen) return null;
 

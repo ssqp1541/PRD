@@ -1,23 +1,55 @@
 /**
  * ProductList 컴포넌트
  * 상품 리스트 표시 컴포넌트 (반응형 지원)
+ * 
+ * @param {Object} props - 컴포넌트 props
+ * @param {Array} props.products - 표시할 상품 배열
+ * @param {Function} props.onProductClick - 상품 클릭 이벤트 핸들러 (선택)
+ * @returns {JSX.Element} ProductList 컴포넌트
+ * 
+ * @example
+ * <ProductList 
+ *   products={products} 
+ *   onProductClick={(product) => console.log(product)}
+ * />
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useCallback, memo } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useResponsive } from '../../hooks/useResponsive';
+import { BREAKPOINTS } from '../../constants/breakpoints';
 
 function ProductList({ products, onProductClick }) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const isMobile = useResponsive(BREAKPOINTS.MOBILE);
+  const isTablet = useResponsive(BREAKPOINTS.TABLET);
 
-  // 화면 크기 감지 (반응형)
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+  // 그리드 스타일을 useMemo로 메모이제이션
+  const gridStyle = useMemo(() => {
+    if (isMobile) {
+      return { ...styles.grid, gridTemplateColumns: '1fr' };
+    }
+    if (isTablet) {
+      return { ...styles.grid, gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))' };
+    }
+    return styles.grid;
+  }, [isMobile, isTablet]);
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+  // 이미지 에러 핸들러를 useCallback으로 메모이제이션
+  const handleImageError = useCallback((e) => {
+    e.target.style.display = 'none';
   }, []);
+
+  // 상품 클릭 핸들러를 useCallback으로 메모이제이션
+  const handleProductClick = useCallback(
+    (product) => {
+      if (onProductClick) {
+        onProductClick(product);
+      }
+    },
+    [onProductClick]
+  );
+
   if (!products || products.length === 0) {
     return (
       <div style={styles.emptyState}>
@@ -29,12 +61,6 @@ function ProductList({ products, onProductClick }) {
     );
   }
 
-  const gridStyle = isMobile
-    ? { ...styles.grid, gridTemplateColumns: '1fr' }
-    : window.innerWidth <= 1024
-    ? { ...styles.grid, gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))' }
-    : styles.grid;
-
   return (
     <div style={styles.container}>
       <div style={gridStyle}>
@@ -45,9 +71,7 @@ function ProductList({ products, onProductClick }) {
                 src={product.image_url}
                 alt={product.name}
                 style={styles.image}
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
+                onError={handleImageError}
               />
             )}
             <div style={styles.content}>
@@ -73,7 +97,7 @@ function ProductList({ products, onProductClick }) {
                 <Link
                   to={`/products/${product.id}`}
                   style={styles.link}
-                  onClick={() => onProductClick && onProductClick(product)}
+                  onClick={() => handleProductClick(product)}
                 >
                   상세보기
                 </Link>
@@ -174,5 +198,26 @@ const styles = {
   },
 };
 
-export default ProductList;
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      price: PropTypes.number.isRequired,
+      image_url: PropTypes.string,
+      is_female_producer: PropTypes.bool,
+      is_eco_packaging: PropTypes.bool,
+      is_eco_friendly: PropTypes.bool,
+    })
+  ),
+  onProductClick: PropTypes.func,
+};
+
+ProductList.defaultProps = {
+  products: [],
+  onProductClick: null,
+};
+
+export default memo(ProductList);
 

@@ -1,9 +1,27 @@
 /**
  * Button 컴포넌트
  * 재사용 가능한 버튼 컴포넌트
+ * 
+ * @param {Object} props - 컴포넌트 props
+ * @param {string} props.variant - 버튼 스타일 변형 ('primary' | 'secondary' | 'danger' | 'outline')
+ * @param {string} props.size - 버튼 크기 ('small' | 'medium' | 'large')
+ * @param {boolean} props.disabled - 비활성화 여부
+ * @param {boolean} props.loading - 로딩 상태 여부
+ * @param {Function} props.onClick - 클릭 이벤트 핸들러
+ * @param {React.ReactNode} props.children - 버튼 내용
+ * @param {string} props.type - 버튼 타입 ('button' | 'submit' | 'reset')
+ * @param {Object} props.style - 인라인 스타일 객체
+ * @returns {JSX.Element} Button 컴포넌트
+ * 
+ * @example
+ * <Button variant="primary" size="large" onClick={handleClick}>
+ *   클릭하세요
+ * </Button>
  */
 
-import React from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import { colors, fontSizes, fontWeights, spacing, borderRadius, transitions } from '../../constants/theme';
 
 function Button({
   variant = 'primary',
@@ -17,38 +35,38 @@ function Button({
   ...props
 }) {
   const baseStyle = {
-    padding: size === 'small' ? '0.5rem 1rem' : size === 'large' ? '1rem 2rem' : '0.75rem 1.5rem',
-    fontSize: size === 'small' ? '0.875rem' : size === 'large' ? '1.125rem' : '1rem',
-    fontWeight: '500',
+    padding: size === 'small' ? `${spacing.sm} ${spacing.base}` : size === 'large' ? `${spacing.base} ${spacing.xl}` : `${spacing.md} ${spacing.lg}`,
+    fontSize: size === 'small' ? fontSizes.sm : size === 'large' ? fontSizes.lg : fontSizes.base,
+    fontWeight: fontWeights.medium,
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: borderRadius.sm,
     cursor: disabled || loading ? 'not-allowed' : 'pointer',
-    transition: 'all 0.2s',
+    transition: `all ${transitions.base}`,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '0.5rem',
+    gap: spacing.sm,
     opacity: disabled ? 0.6 : 1,
     ...style,
   };
 
   const variantStyles = {
     primary: {
-      backgroundColor: '#007bff',
-      color: 'white',
+      backgroundColor: colors.primary,
+      color: colors.text.inverse,
     },
     secondary: {
-      backgroundColor: '#6c757d',
-      color: 'white',
+      backgroundColor: colors.secondary,
+      color: colors.text.inverse,
     },
     danger: {
-      backgroundColor: '#dc3545',
-      color: 'white',
+      backgroundColor: colors.danger,
+      color: colors.text.inverse,
     },
     outline: {
       backgroundColor: 'transparent',
-      color: '#007bff',
-      border: '1px solid #007bff',
+      color: colors.primary,
+      border: `1px solid ${colors.primary}`,
     },
   };
 
@@ -92,5 +110,25 @@ function Button({
   );
 }
 
-export default Button;
+Button.propTypes = {
+  variant: PropTypes.oneOf(['primary', 'secondary', 'danger', 'outline']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool,
+  onClick: PropTypes.func,
+  children: PropTypes.node.isRequired,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  style: PropTypes.object,
+};
+
+Button.defaultProps = {
+  variant: 'primary',
+  size: 'medium',
+  disabled: false,
+  loading: false,
+  type: 'button',
+  style: {},
+};
+
+export default memo(Button);
 

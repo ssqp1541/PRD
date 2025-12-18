@@ -3,45 +3,39 @@
  * 사용자 윤리 영향 리포트를 표시하는 컴포넌트
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { getEthicalImpact } from '../../services/api/userApi';
+import { useAsync } from '../../hooks/useAsync';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
+import ErrorMessage from '../../components/common/ErrorMessage';
 
 function EthicalImpact({ userId: propUserId }) {
   const { user } = useAuth();
   const userId = propUserId || user?.id;
-  
-  const [isLoading, setIsLoading] = useState(true);
-  const [impactData, setImpactData] = useState(null);
-  const [error, setError] = useState(null);
+
+  // 비동기 함수를 메모이제이션
+  const fetchEthicalImpact = useCallback(
+    () => getEthicalImpact(userId),
+    [userId]
+  );
+
+  const { data: impactData, loading: isLoading, error, execute } = useAsync(
+    fetchEthicalImpact,
+    false
+  );
 
   useEffect(() => {
     if (userId) {
-      loadEthicalImpact();
+      execute();
     }
-  }, [userId]);
-
-  const loadEthicalImpact = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const data = await getEthicalImpact(userId);
-      setImpactData(data);
-    } catch (err) {
-      setError(err.message || '윤리 영향 리포트를 불러오는데 실패했습니다.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [userId, execute]);
 
   // 로딩 상태
   if (isLoading) {
     return (
       <div data-testid="ethical-impact-section" style={styles.container}>
-        <div data-testid="loading-spinner" style={styles.loading}>
-          <p>데이터를 불러오는 중...</p>
-        </div>
+        <LoadingSpinner message="데이터를 불러오는 중..." />
       </div>
     );
   }
@@ -50,9 +44,11 @@ function EthicalImpact({ userId: propUserId }) {
   if (error) {
     return (
       <div data-testid="ethical-impact-section" style={styles.container}>
-        <div data-testid="error-message" style={styles.error}>
-          <p>{error}</p>
-        </div>
+        <ErrorMessage
+          message={error}
+          type="error"
+          data-testid="error-message"
+        />
       </div>
     );
   }
@@ -143,18 +139,6 @@ function EthicalImpact({ userId: propUserId }) {
 const styles = {
   container: {
     width: '100%',
-  },
-  loading: {
-    padding: '2rem',
-    textAlign: 'center',
-    color: '#666',
-  },
-  error: {
-    padding: '2rem',
-    backgroundColor: '#fee',
-    color: '#c33',
-    borderRadius: '4px',
-    textAlign: 'center',
   },
   emptyState: {
     padding: '2rem',
