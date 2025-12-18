@@ -1,0 +1,2672 @@
+# Honest Cup product requirements
+_Exported on 12/16/2025 at 16:45:49 GMT+9 from Cursor (2.1.50)_
+
+---
+
+**User**
+
+솔직한 한 잔 (Honest Cup) 제품 요구사항 정의서 (PRD)Document Info항목내용제품명솔직한 한 잔 (Honest Cup)버전1.0 (MVP)작성자(제품 매니저)작성일2025-12-15상태Draft릴리즈 범위MVP (3개월)1. Executive Summary'솔직한 한 잔'은 윤리적 소비에 관심 있는 일반 소비자를 위한 투명한 커피 주문 웹 앱입니다. 소비자가 구매하는 원두가 어떤 농장에서, 어떤 방식으로 재배되었는지, 그리고 공정한 대가가 생산자에게 돌아갔는지에 대한 솔직하고 쉬운 정보를 바로 확인할 수 없는 문제를 해결합니다1.핵심 가치는 블록체인 기반의 투명한 유통 정보 추적과 개인의 윤리적 기여도 정량화를 통해 소비자의 '착한 소비' 신념을 충족시키는 것입니다.2. 목표 및 성공 지표2.1 비전 및 미션비전: 커피 시장에서 투명하고 윤리적인 소비의 표준을 제시합니다.MVP 목표: 핵심 기능을 구현하고, 윤리적 가치 제공에 대한 사용자 만족도(PMF)를 검증합니다.2.2 핵심 성공 지표 (KPI)지표 (KPI)목표치측정 이유NPS (Net Promoter Score)30 이상서비스의 핵심 가치(투명성)에 대한 고객 만족도 확인.주 3회 이상 사용률60% 이상서비스가 습관적인 소비 루틴에 통합되었는지 확인.윤리 정보 조회율상품 페이지 방문자의 80% 이상서비스의 핵심 기능(FR1) 사용률 및 가치 증명.Payback Period2개월 이내(향후) 고객 획득 비용 대비 수익성 확보 가능성 검증.3. 사용자 & 페르소나3.1 타깃 사용자Primary Persona: 착한 소비를 하고 싶은 일반 소비자 (윤리적 소비에 높은 지불 의사를 가진 사용자).해결하는 문제 (Pain Point): 내가 마시는 커피 원두가 윤리적인지 확인하기 위한 솔직하고 쉬운 정보를 바로 찾기 어려워, 내 신념에 맞는 커피를 선택하는 데 어려움을 겪음2.3.2 핵심 가치 제안 (Value Proposition)투명성: QR 코드/블록체인 기반의 생산자 수익 비율, 환경 영향 정보를 손쉽게 제공합니다3.보상: 개인의 커피 소비가 환경에 미치는 긍정적 영향을 **'탄소 발자국 절감량'**으로 정량화하여 보여줍니다4.4. 사용자 스토리 (Gherkin Format)서비스의 핵심 기능 5가지에 대한 테스트 가능한 사용자 스토리입니다5.No.기능 모듈Gherkin 시나리오 (Given-When-Then)FR1투명 정보 추적Given 고객이 특정 원두 상세 페이지에 접속했을 때 When 고객이 '원두 스토리 추적' 탭을 클릭하면 Then 생산자에게 돌아간 수익 비율 및 원산지 농장의 위치가 지도로 시각화되어 표시되어야 한다.FR2윤리 영향 리포트Given 고객이 3개월간 친환경 원두만 구매한 기록이 있을 때 When 고객이 마이페이지의 '나의 윤리적 영향' 섹션을 클릭하면 Then '누적 커피 탄소 발자국 절감량' 수치와 함께, 긍정적인 메시지가 표시되어야 한다.FR3맞춤형 주문 시스템Given 고객이 원두 검색 페이지에 접속했을 때 When 고객이 필터 조건으로 **'여성 생산자 커피'와 '친환경 포장재 사용'**을 모두 선택하고 검색하면 Then 두 가지 기준을 모두 충족하는 원두 상품만 표시되어야 한다.FR4데이터 검증 (관리)Given 파트너가 원두 배치(Batch)의 핵심 데이터를 등록하고 관리자에게 승인 요청했을 때 When 관리자가 관리자 대시보드에서 데이터를 검토하고 '승인' 버튼을 클릭하면 Then 해당 데이터는 즉시 변조 불가능한 분산원장(블록체인)에 기록되어야 한다.FR5파트너 관리 (관리)Given 입점 로스터리 관리자가 파트너 전용 대시보드에 접속했을 때 When 관리자가 '정산 보고서' 탭을 선택하고 기간을 설정하면 Then 총 판매액, 플랫폼 수수료, 최종 정산 예정 금액이 명확하게 표시되어야 한다.5. 기능 명세위에 정의된 사용자 스토리를 지원하는 5가지 핵심 기능입니다.원두 투명 정보 추적 및 시각화 제공 (FR1): 생산자 수익률, 농장 위치 등 핵심 윤리 정보를 시각적으로 제공합니다.개인별 윤리 소비 지표 및 영향 리포트 (FR2): 개인의 탄소 발자국 및 윤리적 기여도를 측정하고 리포트합니다.통합 원두 검색 및 맞춤형 주문 시스템 (FR3): 윤리적 필터(여성 생산자, 친환경 등)를 포함한 검색 및 주문/결제 프로세스를 제공합니다.공급망 데이터 검증 및 블록체인 연동 모듈 (FR4): 파트너 데이터의 신뢰성을 확보하고 블록체인에 기록하는 관리 시스템입니다.파트너 관리 및 자동 정산 대시보드 (FR5): 입점 파트너를 위한 상품/재고 관리 및 판매/정산 보고서 기능을 제공합니다.(이하 UX/UI 설계, 기술 사양, API 명세, 데이터 모델 섹션은 MVP 단계에서는 별도의 문서로 상세화되거나 개발 초기에 구체화됩니다.)10. 비기능 요구사항 (Non-Functional Requirements)토이 프로젝트 수준의 현실적인 비기능 요구사항입니다6.10.1 성능 기대치 (Performance)응답 시간: 메인 페이지 로딩 및 원두 검색 결과 조회는 2초 이내여야 한다.동시 사용자 처리: 동시 접속 50명 수준에서 서비스 응답 시간 지연이 없어야 한다.이미지 최적화: 모든 상품 이미지는 WebP 형식 및 지연 로딩(Lazy Loading)을 적용해야 한다.10.2 보안 요구사항 (Security)데이터 암호화: 사용자 비밀번호는 **해시 함수(bcrypt)**를 사용하여 단방향 암호화되어야 한다.통신 보안: 주문/결제 및 개인 정보 전송을 위해 웹 앱의 모든 통신은 HTTPS/TLS를 사용해야 한다.인젝션 방어: 모든 사용자 입력 값에 대해 SQL Injection 및 XSS 방어를 위한 입력 값 검증을 구현해야 한다.10.3 확장성 고려사항 (Scalability)모듈 분리: 핵심 기능 모듈(커머스, 인증, 윤리 정보 추적)은 향후 마이크로서비스 전환에 용이하도록 독립적인 서비스 계층으로 분리하여 설계해야 한다.10.4 사용성 표준 (Usability)모바일 최적화: 웹 앱은 모든 주요 모바일 디바이스에서 레이아웃이 깨지지 않고 정상적으로 작동해야 한다.직관적 내비게이션: '장바구니', '결제', '마이페이지' 등 핵심 액션은 최대 3클릭 이내로 접근 가능해야 한다.11. 일정 및 마일스톤MVP는 3개월을 목표로 합니다.마일스톤기간목표Phase 0: MVP (Core Feature)3개월핵심 기능(FR1-FR3) 구현, 100명 베타 사용자 확보, PMF 검증.Phase 1: 공개 베타 (Growth)MVP 후 2개월SEO 최적화, 1,000명 사용자 확보, 리텐션 60% 달성.12. 리스크 & 의존성구분내용영향완화 전략데이터 신뢰성 리스크파트너가 제공하는 윤리적 정보(수익 분배율 등)가 정확하지 않을 경우.서비스 핵심 가치(솔직함) 훼손, 사용자 이탈.블록체인 연동(FR4)을 통한 데이터 변조 방지 및 계약서 기반의 정기적인 서류 검증 프로세스 구축.개발 의존성블록체인 또는 분산원장 기술 구현에 필요한 기술 인력 확보 어려움.FR4 구현 지연, 서비스 핵심 차별화 요소 부재.최소한의 검증 가능한 MVP 기능만 구현하고, 기존 DB 연동으로 대체한 후 기술 부채로 관리.
+
+
+
+위 내용을 분석해서 readme.md 파일로 만들어줘
+
+---
+
+**Cursor**
+
+PRD를 분석해 README.md로 정리 중입니다.
+
+
+PRD 내용을 README.md로 정리 중입니다.
+
+
+```markdown
+# 솔직한 한 잔 (Honest Cup)
+
+> 투명하고 윤리적인 커피 소비를 위한 웹 애플리케이션
+
+## 📋 프로젝트 정보
+
+| 항목 | 내용 |
+|------|------|
+| **제품명** | 솔직한 한 잔 (Honest Cup) |
+| **버전** | 1.0 (MVP) |
+| **작성일** | 2025-12-15 |
+| **상태** | Draft |
+| **릴리즈 범위** | MVP (3개월) |
+
+## 🎯 Executive Summary
+
+'솔직한 한 잔'은 윤리적 소비에 관심 있는 일반 소비자를 위한 투명한 커피 주문 웹 앱입니다. 소비자가 구매하는 원두가 어떤 농장에서, 어떤 방식으로 재배되었는지, 그리고 공정한 대가가 생산자에게 돌아갔는지에 대한 솔직하고 쉬운 정보를 바로 확인할 수 없는 문제를 해결합니다.
+
+**핵심 가치:**
+- 블록체인 기반의 투명한 유통 정보 추적
+- 개인의 윤리적 기여도 정량화
+- 소비자의 '착한 소비' 신념 충족
+
+## 🎯 목표 및 성공 지표
+
+### 비전 및 미션
+
+- **비전**: 커피 시장에서 투명하고 윤리적인 소비의 표준을 제시합니다.
+- **MVP 목표**: 핵심 기능을 구현하고, 윤리적 가치 제공에 대한 사용자 만족도(PMF)를 검증합니다.
+
+### 핵심 성공 지표 (KPI)
+
+| 지표 (KPI) | 목표치 | 측정 이유 |
+|-----------|--------|----------|
+| **NPS (Net Promoter Score)** | 30 이상 | 서비스의 핵심 가치(투명성)에 대한 고객 만족도 확인 |
+| **주 3회 이상 사용률** | 60% 이상 | 서비스가 습관적인 소비 루틴에 통합되었는지 확인 |
+| **윤리 정보 조회율** | 상품 페이지 방문자의 80% 이상 | 서비스의 핵심 기능(FR1) 사용률 및 가치 증명 |
+| **Payback Period** | 2개월 이내 | (향후) 고객 획득 비용 대비 수익성 확보 가능성 검증 |
+
+## 👥 사용자 & 페르소나
+
+### 타깃 사용자
+
+**Primary Persona**: 착한 소비를 하고 싶은 일반 소비자 (윤리적 소비에 높은 지불 의사를 가진 사용자)
+
+**해결하는 문제 (Pain Point)**: 
+내가 마시는 커피 원두가 윤리적인지 확인하기 위한 솔직하고 쉬운 정보를 바로 찾기 어려워, 내 신념에 맞는 커피를 선택하는 데 어려움을 겪음
+
+### 핵심 가치 제안 (Value Proposition)
+
+1. **투명성**: QR 코드/블록체인 기반의 생산자 수익 비율, 환경 영향 정보를 손쉽게 제공합니다
+2. **보상**: 개인의 커피 소비가 환경에 미치는 긍정적 영향을 **'탄소 발자국 절감량'**으로 정량화하여 보여줍니다
+
+## 📖 사용자 스토리 (Gherkin Format)
+
+### FR1: 투명 정보 추적
+
+```
+Given 고객이 특정 원두 상세 페이지에 접속했을 때
+When 고객이 '원두 스토리 추적' 탭을 클릭하면
+Then 생산자에게 돌아간 수익 비율 및 원산지 농장의 위치가 지도로 시각화되어 표시되어야 한다.
+```
+
+### FR2: 윤리 영향 리포트
+
+```
+Given 고객이 3개월간 친환경 원두만 구매한 기록이 있을 때
+When 고객이 마이페이지의 '나의 윤리적 영향' 섹션을 클릭하면
+Then '누적 커피 탄소 발자국 절감량' 수치와 함께, 긍정적인 메시지가 표시되어야 한다.
+```
+
+### FR3: 맞춤형 주문 시스템
+
+```
+Given 고객이 원두 검색 페이지에 접속했을 때
+When 고객이 필터 조건으로 '여성 생산자 커피'와 '친환경 포장재 사용'을 모두 선택하고 검색하면
+Then 두 가지 기준을 모두 충족하는 원두 상품만 표시되어야 한다.
+```
+
+### FR4: 데이터 검증 (관리)
+
+```
+Given 파트너가 원두 배치(Batch)의 핵심 데이터를 등록하고 관리자에게 승인 요청했을 때
+When 관리자가 관리자 대시보드에서 데이터를 검토하고 '승인' 버튼을 클릭하면
+Then 해당 데이터는 즉시 변조 불가능한 분산원장(블록체인)에 기록되어야 한다.
+```
+
+### FR5: 파트너 관리 (관리)
+
+```
+Given 입점 로스터리 관리자가 파트너 전용 대시보드에 접속했을 때
+When 관리자가 '정산 보고서' 탭을 선택하고 기간을 설정하면
+Then 총 판매액, 플랫폼 수수료, 최종 정산 예정 금액이 명확하게 표시되어야 한다.
+```
+
+## ⚙️ 기능 명세
+
+위에 정의된 사용자 스토리를 지원하는 5가지 핵심 기능입니다.
+
+1. **원두 투명 정보 추적 및 시각화 제공 (FR1)**: 생산자 수익률, 농장 위치 등 핵심 윤리 정보를 시각적으로 제공합니다.
+2. **개인별 윤리 소비 지표 및 영향 리포트 (FR2)**: 개인의 탄소 발자국 및 윤리적 기여도를 측정하고 리포트합니다.
+3. **통합 원두 검색 및 맞춤형 주문 시스템 (FR3)**: 윤리적 필터(여성 생산자, 친환경 등)를 포함한 검색 및 주문/결제 프로세스를 제공합니다.
+4. **공급망 데이터 검증 및 블록체인 연동 모듈 (FR4)**: 파트너 데이터의 신뢰성을 확보하고 블록체인에 기록하는 관리 시스템입니다.
+5. **파트너 관리 및 자동 정산 대시보드 (FR5)**: 입점 파트너를 위한 상품/재고 관리 및 판매/정산 보고서 기능을 제공합니다.
+
+## 🔧 비기능 요구사항 (Non-Functional Requirements)
+
+### 성능 기대치 (Performance)
+
+- **응답 시간**: 메인 페이지 로딩 및 원두 검색 결과 조회는 2초 이내여야 한다.
+- **동시 사용자 처리**: 동시 접속 50명 수준에서 서비스 응답 시간 지연이 없어야 한다.
+- **이미지 최적화**: 모든 상품 이미지는 WebP 형식 및 지연 로딩(Lazy Loading)을 적용해야 한다.
+
+### 보안 요구사항 (Security)
+
+- **데이터 암호화**: 사용자 비밀번호는 **해시 함수(bcrypt)**를 사용하여 단방향 암호화되어야 한다.
+- **통신 보안**: 주문/결제 및 개인 정보 전송을 위해 웹 앱의 모든 통신은 HTTPS/TLS를 사용해야 한다.
+- **인젝션 방어**: 모든 사용자 입력 값에 대해 SQL Injection 및 XSS 방어를 위한 입력 값 검증을 구현해야 한다.
+
+### 확장성 고려사항 (Scalability)
+
+- **모듈 분리**: 핵심 기능 모듈(커머스, 인증, 윤리 정보 추적)은 향후 마이크로서비스 전환에 용이하도록 독립적인 서비스 계층으로 분리하여 설계해야 한다.
+
+### 사용성 표준 (Usability)
+
+- **모바일 최적화**: 웹 앱은 모든 주요 모바일 디바이스에서 레이아웃이 깨지지 않고 정상적으로 작동해야 한다.
+- **직관적 내비게이션**: '장바구니', '결제', '마이페이지' 등 핵심 액션은 최대 3클릭 이내로 접근 가능해야 한다.
+
+## 📅 일정 및 마일스톤
+
+MVP는 3개월을 목표로 합니다.
+
+| 마일스톤 | 기간 | 목표 |
+|---------|------|------|
+| **Phase 0: MVP (Core Feature)** | 3개월 | 핵심 기능(FR1-FR3) 구현, 100명 베타 사용자 확보, PMF 검증 |
+| **Phase 1: 공개 베타 (Growth)** | MVP 후 2개월 | SEO 최적화, 1,000명 사용자 확보, 리텐션 60% 달성 |
+
+## ⚠️ 리스크 & 의존성
+
+| 구분 | 내용 | 영향 | 완화 전략 |
+|------|------|------|----------|
+| **데이터 신뢰성 리스크** | 파트너가 제공하는 윤리적 정보(수익 분배율 등)가 정확하지 않을 경우 | 서비스 핵심 가치(솔직함) 훼손, 사용자 이탈 | 블록체인 연동(FR4)을 통한 데이터 변조 방지 및 계약서 기반의 정기적인 서류 검증 프로세스 구축 |
+| **개발 의존성** | 블록체인 또는 분산원장 기술 구현에 필요한 기술 인력 확보 어려움 | FR4 구현 지연, 서비스 핵심 차별화 요소 부재 | 최소한의 검증 가능한 MVP 기능만 구현하고, 기존 DB 연동으로 대체한 후 기술 부채로 관리 |
+
+## 📝 참고사항
+
+- UX/UI 설계, 기술 사양, API 명세, 데이터 모델 섹션은 MVP 단계에서는 별도의 문서로 상세화되거나 개발 초기에 구체화됩니다.
+
+---
+
+**문서 버전**: 1.0 (MVP)  
+**최종 업데이트**: 2025-12-15
+
+```
+
+PRD를 분석해 README.md로 정리했습니다.
+
+주요 섹션:
+- 프로젝트 정보
+- Executive Summary
+- 목표 및 성공 지표 (KPI)
+- 사용자 페르소나 및 가치 제안
+- 5가지 핵심 기능의 사용자 스토리 (Gherkin)
+- 기능 명세
+- 비기능 요구사항 (성능, 보안, 확장성, 사용성)
+- 일정 및 마일스톤
+- 리스크 & 의존성
+
+마크다운 형식으로 구조화했고, 표와 코드 블록을 사용해 가독성을 높였습니다. 프로젝트 문서로 바로 사용할 수 있습니다.
+
+---
+
+**User**
+
+@https://github.com/ssqp1541/PRD.git
+
+깃허브에 "Coffee" 라는 Branch 를 생성해서 
+
+"readme 파일생성" commit 을 추가하고 
+
+현재까지의 내용을 업로드 해줘
+
+---
+
+**Cursor**
+
+Git 저장소 상태 확인 중. 이후 "Coffee" 브랜치를 생성하고 README.md를 커밋해 푸시하겠습니다.
+
+
+Git 저장소 초기화 후 원격 저장소 추가, "Coffee" 브랜치 생성 및 푸시 진행 중.
+
+
+작업 완료. 다음을 수행했습니다:
+
+1. Git 저장소 초기화
+2. 원격 저장소 추가 (https://github.com/ssqp1541/PRD.git)
+3. "Coffee" 브랜치 생성 및 체크아웃
+4. README.md 파일 스테이징
+5. "readme 파일생성" 커밋 생성
+6. Coffee 브랜치를 원격 저장소에 푸시
+
+현재 README.md 파일이 GitHub 저장소의 "Coffee" 브랜치에 업로드되었습니다. GitHub에서 확인할 수 있습니다:
+https://github.com/ssqp1541/PRD/tree/Coffee
+
+---
+
+**User**
+
+@README.md 파일에 프로젝트 구조를 추가해줘
+
+---
+
+**Cursor**
+
+프로젝트 구조 확인 후 README.md에 프로젝트 구조 섹션 추가 중.
+
+
+README.md에 프로젝트 구조 섹션 추가 중. 기능 요구사항을 반영해 구조를 제안합니다.
+
+
+```markdown
+# 솔직한 한 잔 (Honest Cup)
+
+> 투명하고 윤리적인 커피 소비를 위한 웹 애플리케이션
+
+## 📋 프로젝트 정보
+
+| 항목 | 내용 |
+|------|------|
+| **제품명** | 솔직한 한 잔 (Honest Cup) |
+| **버전** | 1.0 (MVP) |
+| **작성일** | 2025-12-15 |
+| **상태** | Draft |
+| **릴리즈 범위** | MVP (3개월) |
+
+## 🎯 Executive Summary
+
+'솔직한 한 잔'은 윤리적 소비에 관심 있는 일반 소비자를 위한 투명한 커피 주문 웹 앱입니다. 소비자가 구매하는 원두가 어떤 농장에서, 어떤 방식으로 재배되었는지, 그리고 공정한 대가가 생산자에게 돌아갔는지에 대한 솔직하고 쉬운 정보를 바로 확인할 수 없는 문제를 해결합니다.
+
+**핵심 가치:**
+- 블록체인 기반의 투명한 유통 정보 추적
+- 개인의 윤리적 기여도 정량화
+- 소비자의 '착한 소비' 신념 충족
+
+## 🎯 목표 및 성공 지표
+
+### 비전 및 미션
+
+- **비전**: 커피 시장에서 투명하고 윤리적인 소비의 표준을 제시합니다.
+- **MVP 목표**: 핵심 기능을 구현하고, 윤리적 가치 제공에 대한 사용자 만족도(PMF)를 검증합니다.
+
+### 핵심 성공 지표 (KPI)
+
+| 지표 (KPI) | 목표치 | 측정 이유 |
+|-----------|--------|----------|
+| **NPS (Net Promoter Score)** | 30 이상 | 서비스의 핵심 가치(투명성)에 대한 고객 만족도 확인 |
+| **주 3회 이상 사용률** | 60% 이상 | 서비스가 습관적인 소비 루틴에 통합되었는지 확인 |
+| **윤리 정보 조회율** | 상품 페이지 방문자의 80% 이상 | 서비스의 핵심 기능(FR1) 사용률 및 가치 증명 |
+| **Payback Period** | 2개월 이내 | (향후) 고객 획득 비용 대비 수익성 확보 가능성 검증 |
+
+## 👥 사용자 & 페르소나
+
+### 타깃 사용자
+
+**Primary Persona**: 착한 소비를 하고 싶은 일반 소비자 (윤리적 소비에 높은 지불 의사를 가진 사용자)
+
+**해결하는 문제 (Pain Point)**: 
+내가 마시는 커피 원두가 윤리적인지 확인하기 위한 솔직하고 쉬운 정보를 바로 찾기 어려워, 내 신념에 맞는 커피를 선택하는 데 어려움을 겪음
+
+### 핵심 가치 제안 (Value Proposition)
+
+1. **투명성**: QR 코드/블록체인 기반의 생산자 수익 비율, 환경 영향 정보를 손쉽게 제공합니다
+2. **보상**: 개인의 커피 소비가 환경에 미치는 긍정적 영향을 **'탄소 발자국 절감량'**으로 정량화하여 보여줍니다
+
+## 📖 사용자 스토리 (Gherkin Format)
+
+### FR1: 투명 정보 추적
+
+```
+Given 고객이 특정 원두 상세 페이지에 접속했을 때
+When 고객이 '원두 스토리 추적' 탭을 클릭하면
+Then 생산자에게 돌아간 수익 비율 및 원산지 농장의 위치가 지도로 시각화되어 표시되어야 한다.
+```
+
+### FR2: 윤리 영향 리포트
+
+```
+Given 고객이 3개월간 친환경 원두만 구매한 기록이 있을 때
+When 고객이 마이페이지의 '나의 윤리적 영향' 섹션을 클릭하면
+Then '누적 커피 탄소 발자국 절감량' 수치와 함께, 긍정적인 메시지가 표시되어야 한다.
+```
+
+### FR3: 맞춤형 주문 시스템
+
+```
+Given 고객이 원두 검색 페이지에 접속했을 때
+When 고객이 필터 조건으로 '여성 생산자 커피'와 '친환경 포장재 사용'을 모두 선택하고 검색하면
+Then 두 가지 기준을 모두 충족하는 원두 상품만 표시되어야 한다.
+```
+
+### FR4: 데이터 검증 (관리)
+
+```
+Given 파트너가 원두 배치(Batch)의 핵심 데이터를 등록하고 관리자에게 승인 요청했을 때
+When 관리자가 관리자 대시보드에서 데이터를 검토하고 '승인' 버튼을 클릭하면
+Then 해당 데이터는 즉시 변조 불가능한 분산원장(블록체인)에 기록되어야 한다.
+```
+
+### FR5: 파트너 관리 (관리)
+
+```
+Given 입점 로스터리 관리자가 파트너 전용 대시보드에 접속했을 때
+When 관리자가 '정산 보고서' 탭을 선택하고 기간을 설정하면
+Then 총 판매액, 플랫폼 수수료, 최종 정산 예정 금액이 명확하게 표시되어야 한다.
+```
+
+## ⚙️ 기능 명세
+
+위에 정의된 사용자 스토리를 지원하는 5가지 핵심 기능입니다.
+
+1. **원두 투명 정보 추적 및 시각화 제공 (FR1)**: 생산자 수익률, 농장 위치 등 핵심 윤리 정보를 시각적으로 제공합니다.
+2. **개인별 윤리 소비 지표 및 영향 리포트 (FR2)**: 개인의 탄소 발자국 및 윤리적 기여도를 측정하고 리포트합니다.
+3. **통합 원두 검색 및 맞춤형 주문 시스템 (FR3)**: 윤리적 필터(여성 생산자, 친환경 등)를 포함한 검색 및 주문/결제 프로세스를 제공합니다.
+4. **공급망 데이터 검증 및 블록체인 연동 모듈 (FR4)**: 파트너 데이터의 신뢰성을 확보하고 블록체인에 기록하는 관리 시스템입니다.
+5. **파트너 관리 및 자동 정산 대시보드 (FR5)**: 입점 파트너를 위한 상품/재고 관리 및 판매/정산 보고서 기능을 제공합니다.
+
+## 📁 프로젝트 구조
+
+```
+Coffee/
+├── frontend/                 # 프론트엔드 애플리케이션
+│   ├── src/
+│   │   ├── components/       # 재사용 가능한 UI 컴포넌트
+│   │   │   ├── common/       # 공통 컴포넌트 (Button, Input 등)
+│   │   │   ├── product/      # 상품 관련 컴포넌트
+│   │   │   └── tracking/     # 추적 정보 시각화 컴포넌트
+│   │   ├── pages/            # 페이지 컴포넌트
+│   │   │   ├── Home/         # 메인 페이지
+│   │   │   ├── Product/      # 상품 목록/상세 페이지
+│   │   │   ├── Order/        # 주문/결제 페이지
+│   │   │   ├── MyPage/       # 마이페이지 (윤리 영향 리포트 포함)
+│   │   │   ├── Partner/      # 파트너 대시보드
+│   │   │   └── Admin/        # 관리자 대시보드
+│   │   ├── services/         # API 서비스 레이어
+│   │   │   ├── api/          # API 클라이언트
+│   │   │   ├── auth/         # 인증 서비스
+│   │   │   └── blockchain/   # 블록체인 연동 서비스
+│   │   ├── hooks/            # 커스텀 React Hooks
+│   │   ├── utils/            # 유틸리티 함수
+│   │   ├── store/            # 상태 관리 (Redux/Zustand 등)
+│   │   └── styles/           # 전역 스타일
+│   ├── public/               # 정적 파일
+│   └── package.json
+│
+├── backend/                  # 백엔드 애플리케이션
+│   ├── src/
+│   │   ├── modules/          # 기능별 모듈 (확장성 고려)
+│   │   │   ├── auth/         # 인증 모듈
+│   │   │   ├── commerce/     # 커머스 모듈 (주문/결제)
+│   │   │   ├── tracking/     # 윤리 정보 추적 모듈
+│   │   │   ├── partner/      # 파트너 관리 모듈
+│   │   │   └── admin/        # 관리자 모듈
+│   │   ├── services/         # 비즈니스 로직 서비스
+│   │   │   ├── blockchain/   # 블록체인 연동 서비스
+│   │   │   ├── carbon/       # 탄소 발자국 계산 서비스
+│   │   │   └── payment/      # 결제 서비스
+│   │   ├── models/           # 데이터 모델
+│   │   ├── controllers/      # 컨트롤러
+│   │   ├── middleware/       # 미들웨어 (인증, 검증 등)
+│   │   ├── utils/            # 유틸리티 함수
+│   │   └── config/           # 설정 파일
+│   ├── tests/                # 테스트 코드
+│   └── package.json
+│
+├── database/                 # 데이터베이스 관련
+│   ├── migrations/           # DB 마이그레이션 스크립트
+│   ├── seeds/                # 시드 데이터
+│   └── schemas/              # DB 스키마 정의
+│
+├── blockchain/               # 블록체인 관련 (선택적)
+│   ├── contracts/            # 스마트 컨트랙트
+│   └── integration/          # 블록체인 연동 코드
+│
+├── docs/                     # 문서
+│   ├── api/                  # API 명세서
+│   ├── design/               # 디자인 문서
+│   └── architecture/         # 아키텍처 문서
+│
+├── .gitignore
+├── README.md
+└── docker-compose.yml        # 개발 환경 설정 (선택적)
+```
+
+### 주요 디렉토리 설명
+
+- **frontend/**: 사용자 인터페이스 및 프론트엔드 로직
+- **backend/**: 서버 사이드 로직 및 API
+- **database/**: 데이터베이스 스키마 및 마이그레이션
+- **blockchain/**: 블록체인 연동 모듈 (FR4)
+- **docs/**: 프로젝트 문서
+
+### 모듈 분리 전략
+
+확장성 고려사항에 따라 핵심 기능 모듈은 독립적인 서비스 계층으로 분리되어 있어, 향후 마이크로서비스 전환에 용이합니다:
+
+- **커머스 모듈**: 주문/결제 처리
+- **인증 모듈**: 사용자 인증 및 권한 관리
+- **윤리 정보 추적 모듈**: 투명성 정보 제공 및 탄소 발자국 계산
+
+## 🔧 비기능 요구사항 (Non-Functional Requirements)
+
+### 성능 기대치 (Performance)
+
+- **응답 시간**: 메인 페이지 로딩 및 원두 검색 결과 조회는 2초 이내여야 한다.
+- **동시 사용자 처리**: 동시 접속 50명 수준에서 서비스 응답 시간 지연이 없어야 한다.
+- **이미지 최적화**: 모든 상품 이미지는 WebP 형식 및 지연 로딩(Lazy Loading)을 적용해야 한다.
+
+### 보안 요구사항 (Security)
+
+- **데이터 암호화**: 사용자 비밀번호는 **해시 함수(bcrypt)**를 사용하여 단방향 암호화되어야 한다.
+- **통신 보안**: 주문/결제 및 개인 정보 전송을 위해 웹 앱의 모든 통신은 HTTPS/TLS를 사용해야 한다.
+- **인젝션 방어**: 모든 사용자 입력 값에 대해 SQL Injection 및 XSS 방어를 위한 입력 값 검증을 구현해야 한다.
+
+### 확장성 고려사항 (Scalability)
+
+- **모듈 분리**: 핵심 기능 모듈(커머스, 인증, 윤리 정보 추적)은 향후 마이크로서비스 전환에 용이하도록 독립적인 서비스 계층으로 분리하여 설계해야 한다.
+
+### 사용성 표준 (Usability)
+
+- **모바일 최적화**: 웹 앱은 모든 주요 모바일 디바이스에서 레이아웃이 깨지지 않고 정상적으로 작동해야 한다.
+- **직관적 내비게이션**: '장바구니', '결제', '마이페이지' 등 핵심 액션은 최대 3클릭 이내로 접근 가능해야 한다.
+
+## 📅 일정 및 마일스톤
+
+MVP는 3개월을 목표로 합니다.
+
+| 마일스톤 | 기간 | 목표 |
+|---------|------|------|
+| **Phase 0: MVP (Core Feature)** | 3개월 | 핵심 기능(FR1-FR3) 구현, 100명 베타 사용자 확보, PMF 검증 |
+| **Phase 1: 공개 베타 (Growth)** | MVP 후 2개월 | SEO 최적화, 1,000명 사용자 확보, 리텐션 60% 달성 |
+
+## ⚠️ 리스크 & 의존성
+
+| 구분 | 내용 | 영향 | 완화 전략 |
+|------|------|------|----------|
+| **데이터 신뢰성 리스크** | 파트너가 제공하는 윤리적 정보(수익 분배율 등)가 정확하지 않을 경우 | 서비스 핵심 가치(솔직함) 훼손, 사용자 이탈 | 블록체인 연동(FR4)을 통한 데이터 변조 방지 및 계약서 기반의 정기적인 서류 검증 프로세스 구축 |
+| **개발 의존성** | 블록체인 또는 분산원장 기술 구현에 필요한 기술 인력 확보 어려움 | FR4 구현 지연, 서비스 핵심 차별화 요소 부재 | 최소한의 검증 가능한 MVP 기능만 구현하고, 기존 DB 연동으로 대체한 후 기술 부채로 관리 |
+
+## 📝 참고사항
+
+- UX/UI 설계, 기술 사양, API 명세, 데이터 모델 섹션은 MVP 단계에서는 별도의 문서로 상세화되거나 개발 초기에 구체화됩니다.
+
+---
+
+**문서 버전**: 1.0 (MVP)  
+**최종 업데이트**: 2025-12-15
+
+
+```
+
+README.md에 프로젝트 구조 섹션을 추가했습니다.
+
+추가된 내용:
+- **프로젝트 구조**: 프론트엔드, 백엔드, 데이터베이스, 블록체인, 문서 디렉토리 구조
+- **주요 디렉토리 설명**: 각 디렉토리의 역할
+- **모듈 분리 전략**: 확장성 요구사항에 맞춘 모듈 분리 방식
+
+기능 요구사항(FR1-FR5)과 비기능 요구사항(모듈 분리, 마이크로서비스 전환 가능성)을 반영했습니다. 향후 개발 시 참고할 수 있는 구조입니다.
+
+---
+
+**User**
+
+현재까지 내용을 "프로젝트 구조 추가" commit 을 생성하고 업로드 해줘
+
+---
+
+**Cursor**
+
+변경사항 확인 후 커밋하고 업로드합니다.
+
+
+작업 완료. 다음을 수행했습니다:
+
+1. README.md 변경사항 확인
+2. 변경사항 스테이징
+3. "프로젝트 구조 추가" 커밋 생성 (83줄 추가)
+4. Coffee 브랜치에 푸시
+
+프로젝트 구조 섹션이 GitHub 저장소의 Coffee 브랜치에 업로드되었습니다. 다음 링크에서 확인할 수 있습니다:
+https://github.com/ssqp1541/PRD/tree/Coffee
+
+---
+
+**User**
+
+@README.md  파일을 분석해서 프로젝트 구조를 만들어줘
+
+---
+
+**Cursor**
+
+README.md의 프로젝트 구조를 확인하고, 실제 디렉토리와 기본 파일을 생성합니다.
+
+
+README.md의 프로젝트 구조에 맞춰 디렉토리와 기본 파일을 생성 중입니다.
+
+
+기본 파일 생성 중: package.json, .gitignore, docker-compose.yml.
+
+
+```json
+{
+  "name": "honest-cup-frontend",
+  "version": "1.0.0",
+  "description": "솔직한 한 잔 (Honest Cup) - 프론트엔드 애플리케이션",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Development server start script'",
+    "build": "echo 'Build script'",
+    "test": "echo 'Test script'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
+
+```
+
+```json
+{
+  "name": "honest-cup-backend",
+  "version": "1.0.0",
+  "description": "솔직한 한 잔 (Honest Cup) - 백엔드 애플리케이션",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Development server start script'",
+    "start": "echo 'Production server start script'",
+    "test": "echo 'Test script'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
+
+```
+
+```ignore
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Docker
+docker-compose.override.yml
+
+```
+
+```dockercompose
+version: '3.8'
+
+services:
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://user:password@db:5432/honestcup
+    depends_on:
+      - db
+
+  # Database service
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=honestcup
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+```
+
+빈 디렉토리 유지를 위해 주요 디렉토리에 .gitkeep 파일 추가 중.
+
+
+생성된 프로젝트 구조 확인 중.
+
+
+README.md에 정의된 프로젝트 구조를 생성했습니다.
+
+생성된 구조:
+
+**프론트엔드 (frontend/)**
+- `src/components/` - 공통, 상품, 추적 컴포넌트
+- `src/pages/` - Home, Product, Order, MyPage, Partner, Admin 페이지
+- `src/services/` - API, 인증, 블록체인 서비스
+- `src/hooks/`, `src/utils/`, `src/store/`, `src/styles/`
+- `public/` - 정적 파일
+- `package.json` - 기본 설정
+
+**백엔드 (backend/)**
+- `src/modules/` - auth, commerce, tracking, partner, admin 모듈
+- `src/services/` - blockchain, carbon, payment 서비스
+- `src/models/`, `src/controllers/`, `src/middleware/`, `src/utils/`, `src/config/`
+- `tests/` - 테스트 코드
+- `package.json` - 기본 설정
+
+**데이터베이스 (database/)**
+- `migrations/`, `seeds/`, `schemas/`
+
+**블록체인 (blockchain/)**
+- `contracts/`, `integration/`
+
+**문서 (docs/)**
+- `api/`, `design/`, `architecture/`
+
+**루트 파일**
+- `.gitignore` - Git 제외 파일 설정
+- `docker-compose.yml` - 개발 환경 Docker 설정
+
+모든 빈 디렉토리에는 `.gitkeep` 파일을 추가해 Git에 포함되도록 했습니다. 이제 개발을 시작할 수 있습니다.
+
+---
+
+**User**
+
+현재까지 내용을 "프로젝트 구조 생성" commit 을 추가하고 업로드 해줘
+
+---
+
+**Cursor**
+
+변경사항 확인 후 커밋하고 업로드합니다.
+
+
+작업 완료. 다음을 수행했습니다:
+
+1. **변경사항 확인**: 새로 생성된 프로젝트 구조 파일들 확인
+2. **모든 파일 스테이징**: `.gitignore`, `docker-compose.yml`, `frontend/`, `backend/`, `database/`, `blockchain/`, `docs/` 등 모든 파일 추가
+3. **"프로젝트 구조 생성" 커밋 생성**: 46개 파일, 859줄 추가
+4. **Coffee 브랜치에 푸시**: 원격 저장소에 업로드 완료
+
+프로젝트 구조가 GitHub 저장소의 Coffee 브랜치에 업로드되었습니다. 다음 링크에서 확인할 수 있습니다:
+https://github.com/ssqp1541/PRD/tree/Coffee
+
+생성된 구조:
+- 프론트엔드 및 백엔드 디렉토리 구조
+- 데이터베이스, 블록체인, 문서 디렉토리
+- 기본 설정 파일들 (package.json, .gitignore, docker-compose.yml)
+- 모든 빈 디렉토리의 .gitkeep 파일들
+
+---
+
+**User**
+
+설치하고 실행하는 방법을 docs 폴더에 마크다운 파일로 저장해줘
+
+---
+
+**Cursor**
+
+설치 및 실행 가이드를 `docs` 폴더에 마크다운 파일로 작성 중입니다.
+
+
+설치 및 실행 가이드를 `docs` 폴더에 작성 중입니다.
+
+
+```markdown
+# 설치 및 실행 가이드
+
+> 솔직한 한 잔 (Honest Cup) 프로젝트 설치 및 실행 방법
+
+## 📋 목차
+
+1. [사전 요구사항](#사전-요구사항)
+2. [프로젝트 클론](#프로젝트-클론)
+3. [환경 변수 설정](#환경-변수-설정)
+4. [Docker를 사용한 실행 (권장)](#docker를-사용한-실행-권장)
+5. [로컬 개발 환경 설정](#로컬-개발-환경-설정)
+6. [개별 서비스 실행](#개별-서비스-실행)
+7. [문제 해결](#문제-해결)
+
+---
+
+## 사전 요구사항
+
+프로젝트를 실행하기 전에 다음 소프트웨어가 설치되어 있어야 합니다:
+
+### 필수 요구사항
+
+- **Node.js** (v18 이상 권장)
+  - [Node.js 공식 사이트](https://nodejs.org/)에서 다운로드
+  - 설치 확인: `node --version`
+  
+- **npm** 또는 **yarn** (Node.js와 함께 설치됨)
+  - 설치 확인: `npm --version` 또는 `yarn --version`
+
+- **Git**
+  - [Git 공식 사이트](https://git-scm.com/)에서 다운로드
+  - 설치 확인: `git --version`
+
+### Docker를 사용하는 경우 (권장)
+
+- **Docker Desktop** (v20 이상)
+  - [Docker Desktop 공식 사이트](https://www.docker.com/products/docker-desktop)에서 다운로드
+  - 설치 확인: `docker --version`
+  
+- **Docker Compose** (v2 이상, Docker Desktop에 포함됨)
+  - 설치 확인: `docker-compose --version`
+
+### 선택적 요구사항
+
+- **PostgreSQL** (로컬 개발 시 직접 설치하는 경우)
+  - [PostgreSQL 공식 사이트](https://www.postgresql.org/download/)에서 다운로드
+  - Docker를 사용하는 경우 불필요
+
+---
+
+## 프로젝트 클론
+
+```bash
+# GitHub에서 프로젝트 클론
+git clone https://github.com/ssqp1541/PRD.git
+
+# 프로젝트 디렉토리로 이동
+cd PRD
+
+# Coffee 브랜치로 전환
+git checkout Coffee
+
+# 또는 Coffee 디렉토리로 직접 이동
+cd Coffee
+```
+
+---
+
+## 환경 변수 설정
+
+프로젝트 루트에 `.env` 파일을 생성하고 필요한 환경 변수를 설정합니다.
+
+### 루트 `.env` 파일 (선택사항)
+
+```env
+# 프로젝트 환경
+NODE_ENV=development
+
+# 데이터베이스 설정 (Docker 사용 시)
+DATABASE_URL=postgresql://user:password@localhost:5432/honestcup
+
+# API 키 및 기타 설정
+# API_KEY=your_api_key_here
+# BLOCKCHAIN_NETWORK=testnet
+```
+
+### 프론트엔드 `.env` 파일
+
+`frontend/.env` 파일 생성:
+
+```env
+REACT_APP_API_URL=http://localhost:8000
+REACT_APP_BLOCKCHAIN_NETWORK=testnet
+```
+
+### 백엔드 `.env` 파일
+
+`backend/.env` 파일 생성:
+
+```env
+NODE_ENV=development
+PORT=8000
+DATABASE_URL=postgresql://user:password@localhost:5432/honestcup
+JWT_SECRET=your_jwt_secret_here
+BCRYPT_ROUNDS=10
+```
+
+> **보안 주의사항**: `.env` 파일은 절대 Git에 커밋하지 마세요. `.gitignore`에 이미 포함되어 있습니다.
+
+---
+
+## Docker를 사용한 실행 (권장)
+
+Docker를 사용하면 모든 의존성과 서비스를 자동으로 설정하고 실행할 수 있습니다.
+
+### 1. Docker 서비스 시작
+
+```bash
+# 프로젝트 루트에서 실행
+docker-compose up -d
+```
+
+이 명령은 다음 서비스를 시작합니다:
+- **Frontend**: http://localhost:3000
+- **Backend**: http://localhost:8000
+- **Database**: localhost:5432
+
+### 2. 서비스 상태 확인
+
+```bash
+# 실행 중인 컨테이너 확인
+docker-compose ps
+
+# 로그 확인
+docker-compose logs -f
+
+# 특정 서비스 로그만 확인
+docker-compose logs -f frontend
+docker-compose logs -f backend
+docker-compose logs -f db
+```
+
+### 3. 서비스 중지
+
+```bash
+# 서비스 중지
+docker-compose stop
+
+# 서비스 중지 및 컨테이너 제거
+docker-compose down
+
+# 볼륨까지 제거 (데이터 삭제)
+docker-compose down -v
+```
+
+### 4. 데이터베이스 마이그레이션 실행
+
+```bash
+# 백엔드 컨테이너에서 마이그레이션 실행
+docker-compose exec backend npm run migrate
+
+# 또는 직접 접속
+docker-compose exec backend sh
+```
+
+---
+
+## 로컬 개발 환경 설정
+
+Docker 없이 로컬에서 직접 실행하는 방법입니다.
+
+### 1. 데이터베이스 설정
+
+#### PostgreSQL 직접 설치한 경우
+
+```bash
+# PostgreSQL 서비스 시작 (OS에 따라 다름)
+# Windows: 서비스 관리자에서 PostgreSQL 서비스 시작
+# macOS: brew services start postgresql
+# Linux: sudo systemctl start postgresql
+
+# 데이터베이스 생성
+createdb honestcup
+
+# 또는 psql 사용
+psql -U postgres
+CREATE DATABASE honestcup;
+```
+
+#### Docker로 PostgreSQL만 실행하는 경우
+
+```bash
+# PostgreSQL 컨테이너만 실행
+docker run --name honestcup-db \
+  -e POSTGRES_USER=user \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_DB=honestcup \
+  -p 5432:5432 \
+  -d postgres:15-alpine
+```
+
+### 2. 프론트엔드 설정
+
+```bash
+# 프론트엔드 디렉토리로 이동
+cd frontend
+
+# 의존성 설치
+npm install
+# 또는
+yarn install
+
+# 개발 서버 실행
+npm run dev
+# 또는
+yarn dev
+```
+
+프론트엔드는 http://localhost:3000 에서 실행됩니다.
+
+### 3. 백엔드 설정
+
+```bash
+# 백엔드 디렉토리로 이동
+cd backend
+
+# 의존성 설치
+npm install
+# 또는
+yarn install
+
+# 데이터베이스 마이그레이션 실행
+npm run migrate
+# 또는
+yarn migrate
+
+# 개발 서버 실행
+npm run dev
+# 또는
+yarn dev
+```
+
+백엔드는 http://localhost:8000 에서 실행됩니다.
+
+---
+
+## 개별 서비스 실행
+
+### 프론트엔드만 실행
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### 백엔드만 실행
+
+```bash
+cd backend
+npm install
+npm run migrate  # 첫 실행 시
+npm run dev
+```
+
+### 데이터베이스만 실행 (Docker)
+
+```bash
+docker run --name honestcup-db \
+  -e POSTGRES_USER=user \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_DB=honestcup \
+  -p 5432:5432 \
+  -d postgres:15-alpine
+```
+
+---
+
+## 문제 해결
+
+### 포트 충돌
+
+포트가 이미 사용 중인 경우:
+
+```bash
+# Windows에서 포트 사용 확인
+netstat -ano | findstr :3000
+netstat -ano | findstr :8000
+netstat -ano | findstr :5432
+
+# Linux/macOS에서 포트 사용 확인
+lsof -i :3000
+lsof -i :8000
+lsof -i :5432
+```
+
+`docker-compose.yml`에서 포트 번호를 변경할 수 있습니다.
+
+### Docker 컨테이너 문제
+
+```bash
+# 컨테이너 재시작
+docker-compose restart
+
+# 컨테이너 재빌드
+docker-compose build --no-cache
+docker-compose up -d
+
+# 모든 컨테이너 및 볼륨 제거 후 재시작
+docker-compose down -v
+docker-compose up -d
+```
+
+### 데이터베이스 연결 오류
+
+1. 데이터베이스가 실행 중인지 확인
+2. `.env` 파일의 `DATABASE_URL` 확인
+3. 방화벽 설정 확인
+4. Docker 네트워크 확인: `docker network ls`
+
+### 의존성 설치 오류
+
+```bash
+# node_modules 삭제 후 재설치
+rm -rf node_modules package-lock.json
+npm install
+
+# 또는 yarn 사용
+rm -rf node_modules yarn.lock
+yarn install
+```
+
+### 캐시 문제
+
+```bash
+# npm 캐시 클리어
+npm cache clean --force
+
+# Docker 빌드 캐시 무시
+docker-compose build --no-cache
+```
+
+---
+
+## 다음 단계
+
+설치 및 실행이 완료되면 다음 문서를 참고하세요:
+
+- [API 명세서](./api/README.md) - API 엔드포인트 문서
+- [아키텍처 문서](./architecture/README.md) - 시스템 아키텍처 설명
+- [개발 가이드](./DEVELOPMENT.md) - 개발 가이드 (작성 예정)
+
+---
+
+## 지원
+
+문제가 발생하면 다음을 확인하세요:
+
+1. 이 문서의 [문제 해결](#문제-해결) 섹션
+2. 프로젝트 이슈 트래커
+3. 개발팀에 문의
+
+---
+
+**마지막 업데이트**: 2025-12-15
+
+```
+
+설치 및 실행 가이드를 `docs/INSTALLATION.md`에 작성했습니다.
+
+포함된 내용:
+- 사전 요구사항: Node.js, npm/yarn, Git, Docker 등
+- 프로젝트 클론 방법
+- 환경 변수 설정: 루트, 프론트엔드, 백엔드 `.env` 예시
+- Docker를 사용한 실행 (권장): docker-compose 사용법
+- 로컬 개발 환경 설정: Docker 없이 직접 실행하는 방법
+- 개별 서비스 실행: 프론트엔드, 백엔드, 데이터베이스 개별 실행
+- 문제 해결: 포트 충돌, Docker 문제, 데이터베이스 연결 오류 등
+
+프로젝트 설치 및 실행에 필요한 정보를 포함했습니다.
+
+---
+
+**User**
+
+변경된 내용을 "Install 방법" commit 추가하고 업로드 해줘
+
+---
+
+**Cursor**
+
+변경사항 확인 후 커밋하고 업로드합니다.
+
+
+작업 완료. 다음을 수행했습니다:
+
+1. **변경사항 확인**: `docs/INSTALLATION.md` 파일 추가 확인
+2. **파일 스테이징**: 설치 가이드 파일 추가
+3. **"Install 방법" 커밋 생성**: 366줄 추가
+4. **Coffee 브랜치에 푸시**: 원격 저장소에 업로드 완료
+
+설치 및 실행 가이드가 GitHub 저장소의 Coffee 브랜치에 업로드되었습니다. 다음 링크에서 확인할 수 있습니다:
+https://github.com/ssqp1541/PRD/tree/Coffee
+
+`docs/INSTALLATION.md` 파일에는 다음 내용이 포함되어 있습니다:
+- 사전 요구사항
+- 프로젝트 클론 방법
+- 환경 변수 설정
+- Docker를 사용한 실행 방법
+- 로컬 개발 환경 설정
+- 문제 해결 가이드
+
+---
+
+**User**
+
+Git Hub 에 "TC" Brach 추가해줘
+
+---
+
+**Cursor**
+
+GitHub에 "TC" 브랜치를 생성하고 푸시합니다.
+
+
+작업 완료. GitHub에 "TC" 브랜치를 생성하고 푸시했습니다.
+
+1. **TC 브랜치 생성**: Coffee 브랜치를 기반으로 TC 브랜치 생성
+2. **원격 저장소에 푸시**: GitHub에 TC 브랜치 업로드 및 추적 설정
+
+현재 TC 브랜치에 있으며, 다음 링크에서 확인할 수 있습니다:
+https://github.com/ssqp1541/PRD/tree/TC
+
+필요하면 Pull Request를 생성할 수 있습니다:
+https://github.com/ssqp1541/PRD/pull/new/TC
+
+---
+
+**User**
+
+실패하는 테스트를 진행하기 위한 순서를 알려주고, 승인을 받아서 작업할 수 있도록 해줘
+
+---
+
+**Cursor**
+
+
+TDD(Test-Driven Development) 워크플로우를 정리하고, 실패하는 테스트부터 시작하는 계획을 제안합니다.
+
+
+
+TDD(Test-Driven Development) 워크플로우와 실패하는 테스트부터 시작하는 계획을 정리합니다.
+
+
+```markdown
+# TDD (Test-Driven Development) 워크플로우
+
+> 실패하는 테스트부터 시작하는 개발 방법론
+
+## 📋 TDD 사이클 (Red-Green-Refactor)
+
+TDD는 다음 3단계를 반복합니다:
+
+```
+┌─────────┐
+│   1.    │  🔴 RED: 실패하는 테스트 작성
+│  Write  │     → 테스트가 실패하는지 확인
+│   Test  │
+└────┬────┘
+     │
+     ▼
+┌─────────┐
+│   2.    │  🟢 GREEN: 테스트를 통과시키는 최소한의 코드 작성
+│  Write  │     → 테스트가 통과하는지 확인
+│   Code  │
+└────┬────┘
+     │
+     ▼
+┌─────────┐
+│   3.    │  🔵 REFACTOR: 코드 리팩토링
+│ Refactor│     → 테스트가 여전히 통과하는지 확인
+└────┬────┘
+     │
+     └─────▶ 다음 기능으로 반복
+```
+
+## 🎯 작업 순서
+
+### Phase 1: 테스트 환경 설정
+
+1. **테스트 프레임워크 설치**
+   - 백엔드: Jest + Supertest (API 테스트)
+   - 프론트엔드: Jest + React Testing Library
+   - E2E: Playwright 또는 Cypress (선택사항)
+
+2. **테스트 스크립트 설정**
+   - `package.json`에 테스트 스크립트 추가
+   - CI/CD 파이프라인 설정 (선택사항)
+
+### Phase 2: 첫 번째 실패하는 테스트 작성 (FR1)
+
+**FR1: 투명 정보 추적** 기능부터 시작
+
+#### 백엔드 테스트 작성
+- `backend/tests/modules/tracking/productTracking.test.js`
+- API 엔드포인트: `GET /api/products/:id/tracking`
+- 예상 동작:
+  - 상품 ID로 조회 시 생산자 수익 비율 반환
+  - 농장 위치 정보 반환
+  - 지도 시각화를 위한 좌표 데이터 반환
+
+#### 프론트엔드 테스트 작성
+- `frontend/src/pages/Product/ProductTracking.test.jsx`
+- 컴포넌트 테스트:
+  - '원두 스토리 추적' 탭 클릭 시 추적 정보 표시
+  - 지도 컴포넌트 렌더링 확인
+
+### Phase 3: 테스트 실행 및 실패 확인
+
+```bash
+# 백엔드 테스트 실행
+cd backend
+npm test
+
+# 프론트엔드 테스트 실행
+cd frontend
+npm test
+```
+
+**예상 결과**: 모든 테스트가 실패 (아직 구현이 없으므로)
+
+### Phase 4: 최소한의 구현으로 테스트 통과
+
+1. **백엔드 구현**
+   - 라우트 추가
+   - 컨트롤러 생성
+   - 모델 정의 (최소한)
+   - 더미 데이터 반환
+
+2. **프론트엔드 구현**
+   - 컴포넌트 생성
+   - API 호출 함수
+   - 기본 UI 렌더링
+
+### Phase 5: 리팩토링
+
+- 코드 품질 개선
+- 중복 제거
+- 성능 최적화
+- 테스트가 여전히 통과하는지 확인
+
+## 📝 구현 우선순위
+
+MVP 목표에 따라 다음 순서로 진행:
+
+1. **FR1: 투명 정보 추적** (최우선)
+   - 핵심 가치 제안의 기반
+   - 상대적으로 단순한 기능
+
+2. **FR3: 맞춤형 주문 시스템**
+   - 검색 및 필터링 로직
+   - 주문/결제 프로세스
+
+3. **FR2: 윤리 영향 리포트**
+   - 데이터 집계 및 계산
+   - 리포트 생성
+
+4. **FR5: 파트너 관리** (관리자 기능)
+   - 정산 로직
+   - 대시보드
+
+5. **FR4: 블록체인 연동** (최후)
+   - 기술 복잡도 높음
+   - MVP에서는 최소 구현 또는 모의(Mock) 구현
+
+## 🛠️ 테스트 작성 가이드
+
+### 백엔드 테스트 예시
+
+```javascript
+// backend/tests/modules/tracking/productTracking.test.js
+describe('Product Tracking API', () => {
+  describe('GET /api/products/:id/tracking', () => {
+    it('should return producer revenue ratio', async () => {
+      const response = await request(app)
+        .get('/api/products/1/tracking')
+        .expect(200);
+      
+      expect(response.body).toHaveProperty('producerRevenueRatio');
+      expect(response.body.producerRevenueRatio).toBeGreaterThan(0);
+    });
+
+    it('should return farm location for map visualization', async () => {
+      const response = await request(app)
+        .get('/api/products/1/tracking')
+        .expect(200);
+      
+      expect(response.body).toHaveProperty('farmLocation');
+      expect(response.body.farmLocation).toHaveProperty('latitude');
+      expect(response.body.farmLocation).toHaveProperty('longitude');
+    });
+  });
+});
+```
+
+### 프론트엔드 테스트 예시
+
+```javascript
+// frontend/src/pages/Product/ProductTracking.test.jsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import ProductTracking from './ProductTracking';
+
+describe('ProductTracking Component', () => {
+  it('should display tracking information when tab is clicked', async () => {
+    render(<ProductTracking productId={1} />);
+    
+    const tab = screen.getByText('원두 스토리 추적');
+    fireEvent.click(tab);
+    
+    expect(await screen.findByText(/생산자 수익 비율/)).toBeInTheDocument();
+  });
+
+  it('should render map component with farm location', async () => {
+    render(<ProductTracking productId={1} />);
+    
+    const tab = screen.getByText('원두 스토리 추적');
+    fireEvent.click(tab);
+    
+    expect(await screen.findByTestId('farm-map')).toBeInTheDocument();
+  });
+});
+```
+
+## ✅ 체크리스트
+
+각 기능 개발 시 다음을 확인:
+
+- [ ] 실패하는 테스트 작성 완료
+- [ ] 테스트 실행하여 실패 확인
+- [ ] 최소한의 코드로 테스트 통과
+- [ ] 리팩토링 완료
+- [ ] 모든 테스트 통과 확인
+- [ ] 코드 리뷰 (선택사항)
+
+## 📚 참고 자료
+
+- [Jest 공식 문서](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/react)
+- [TDD Best Practices](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
+
+---
+
+**작성일**: 2025-12-15
+
+```
+
+
+TDD 워크플로우 문서를 작성했습니다. 실패하는 테스트부터 시작하는 작업 계획을 제시합니다.
+
+## TDD 작업 계획
+
+### 1단계: 테스트 환경 설정
+- 백엔드: Jest + Supertest 설치 및 설정
+- 프론트엔드: Jest + React Testing Library 설치 및 설정
+- 테스트 스크립트 추가
+
+### 2단계: 첫 번째 실패하는 테스트 작성 (FR1)
+- 백엔드: `GET /api/products/:id/tracking` API 테스트
+- 프론트엔드: ProductTracking 컴포넌트 테스트
+- 테스트 실행하여 실패 확인
+
+### 3단계: 최소 구현으로 테스트 통과
+- 백엔드: 더미 데이터를 반환하는 API 구현
+- 프론트엔드: 기본 컴포넌트 구현
+
+### 4단계: 리팩토링
+- 코드 개선 및 최적화
+
+## 승인 요청
+
+다음 작업을 진행할까요?
+
+1. 테스트 프레임워크 설치 및 설정
+2. FR1(투명 정보 추적) 기능의 실패하는 테스트 작성
+3. 테스트 실행 및 실패 확인
+
+진행할까요? 다른 기능(FR2, FR3 등)부터 시작하거나, 특정 부분을 우선할까요?
+
+---
+
+**User**
+
+테스트 진행해줘
+
+---
+
+**Cursor**
+
+
+TDD 워크플로우에 따라 실패하는 테스트부터 시작합니다. 테스트 환경 설정 후 FR1 기능 테스트를 작성합니다.
+
+
+
+테스트 환경 설정부터 진행합니다. FR1 기능의 실패하는 테스트를 작성합니다.
+
+
+```json
+{
+  "name": "honest-cup-backend",
+  "version": "1.0.0",
+  "description": "솔직한 한 잔 (Honest Cup) - 백엔드 애플리케이션",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Development server start script'",
+    "start": "echo 'Production server start script'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "@types/jest": "^29.5.11"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ]
+  }
+}
+
+
+```
+
+```json
+{
+  "name": "honest-cup-frontend",
+  "version": "1.0.0",
+  "description": "솔직한 한 잔 (Honest Cup) - 프론트엔드 애플리케이션",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Development server start script'",
+    "build": "echo 'Build script'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/user-event": "^14.5.1",
+    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-react": "^7.23.3"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    },
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ]
+  }
+}
+
+
+```
+
+
+FR1 기능의 실패하는 테스트 작성 중.
+
+
+```javascript
+/**
+ * FR1: 투명 정보 추적 기능 테스트
+ * 
+ * Given 고객이 특정 원두 상세 페이지에 접속했을 때
+ * When 고객이 '원두 스토리 추적' 탭을 클릭하면
+ * Then 생산자에게 돌아간 수익 비율 및 원산지 농장의 위치가 지도로 시각화되어 표시되어야 한다.
+ */
+
+const request = require('supertest');
+const app = require('../../../src/app'); // 앱이 아직 없으므로 실패할 것
+
+describe('Product Tracking API (FR1)', () => {
+  describe('GET /api/products/:id/tracking', () => {
+    it('should return 200 status code', async () => {
+      const response = await request(app)
+        .get('/api/products/1/tracking')
+        .expect(200);
+    });
+
+    it('should return producer revenue ratio', async () => {
+      const response = await request(app)
+        .get('/api/products/1/tracking')
+        .expect(200);
+      
+      expect(response.body).toHaveProperty('producerRevenueRatio');
+      expect(typeof response.body.producerRevenueRatio).toBe('number');
+      expect(response.body.producerRevenueRatio).toBeGreaterThan(0);
+      expect(response.body.producerRevenueRatio).toBeLessThanOrEqual(100);
+    });
+
+    it('should return farm location for map visualization', async () => {
+      const response = await request(app)
+        .get('/api/products/1/tracking')
+        .expect(200);
+      
+      expect(response.body).toHaveProperty('farmLocation');
+      expect(response.body.farmLocation).toHaveProperty('latitude');
+      expect(response.body.farmLocation).toHaveProperty('longitude');
+      expect(response.body.farmLocation).toHaveProperty('address');
+      
+      // 좌표 유효성 검증
+      expect(response.body.farmLocation.latitude).toBeGreaterThanOrEqual(-90);
+      expect(response.body.farmLocation.latitude).toBeLessThanOrEqual(90);
+      expect(response.body.farmLocation.longitude).toBeGreaterThanOrEqual(-180);
+      expect(response.body.farmLocation.longitude).toBeLessThanOrEqual(180);
+    });
+
+    it('should return product origin information', async () => {
+      const response = await request(app)
+        .get('/api/products/1/tracking')
+        .expect(200);
+      
+      expect(response.body).toHaveProperty('origin');
+      expect(response.body.origin).toHaveProperty('country');
+      expect(response.body.origin).toHaveProperty('region');
+    });
+
+    it('should return 404 for non-existent product', async () => {
+      await request(app)
+        .get('/api/products/99999/tracking')
+        .expect(404);
+    });
+  });
+});
+
+```
+
+```javascript
+/**
+ * Express 앱 설정 파일
+ * 테스트를 위해 최소한의 구조만 제공
+ */
+
+// 이 파일은 테스트가 실패하도록 의도적으로 비어있습니다.
+// TDD의 Red 단계: 테스트가 실패하는 것을 확인한 후 구현을 시작합니다.
+
+module.exports = null; // 일부러 null을 반환하여 테스트가 실패하도록 함
+
+```
+
+```javascript
+// Jest 테스트 환경 설정
+import '@testing-library/jest-dom';
+
+```
+
+```javascriptreact
+/**
+ * FR1: 투명 정보 추적 기능 프론트엔드 테스트
+ * 
+ * Given 고객이 특정 원두 상세 페이지에 접속했을 때
+ * When 고객이 '원두 스토리 추적' 탭을 클릭하면
+ * Then 생산자에게 돌아간 수익 비율 및 원산지 농장의 위치가 지도로 시각화되어 표시되어야 한다.
+ */
+
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import ProductTracking from '../ProductTracking';
+
+// API 모킹 (아직 구현되지 않음)
+jest.mock('../../../services/api/productApi', () => ({
+  getProductTracking: jest.fn(),
+}));
+
+describe('ProductTracking Component (FR1)', () => {
+  const mockProductId = 1;
+  const mockTrackingData = {
+    producerRevenueRatio: 45.5,
+    farmLocation: {
+      latitude: 37.5665,
+      longitude: 126.9780,
+      address: '서울특별시 중구',
+    },
+    origin: {
+      country: '에티오피아',
+      region: '시다모',
+    },
+  };
+
+  beforeEach(() => {
+    const { getProductTracking } = require('../../../services/api/productApi');
+    getProductTracking.mockResolvedValue(mockTrackingData);
+  });
+
+  it('should render tracking tab button', () => {
+    render(<ProductTracking productId={mockProductId} />);
+    
+    const tabButton = screen.getByText('원두 스토리 추적');
+    expect(tabButton).toBeInTheDocument();
+  });
+
+  it('should display tracking information when tab is clicked', async () => {
+    render(<ProductTracking productId={mockProductId} />);
+    
+    const tab = screen.getByText('원두 스토리 추적');
+    fireEvent.click(tab);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/생산자 수익 비율/)).toBeInTheDocument();
+    });
+    
+    expect(screen.getByText(/45.5%/)).toBeInTheDocument();
+  });
+
+  it('should render map component with farm location', async () => {
+    render(<ProductTracking productId={mockProductId} />);
+    
+    const tab = screen.getByText('원두 스토리 추적');
+    fireEvent.click(tab);
+    
+    await waitFor(() => {
+      const map = screen.getByTestId('farm-map');
+      expect(map).toBeInTheDocument();
+    });
+  });
+
+  it('should display farm location coordinates', async () => {
+    render(<ProductTracking productId={mockProductId} />);
+    
+    const tab = screen.getByText('원두 스토리 추적');
+    fireEvent.click(tab);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/서울특별시 중구/)).toBeInTheDocument();
+    });
+  });
+
+  it('should display origin information', async () => {
+    render(<ProductTracking productId={mockProductId} />);
+    
+    const tab = screen.getByText('원두 스토리 추적');
+    fireEvent.click(tab);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/에티오피아/)).toBeInTheDocument();
+      expect(screen.getByText(/시다모/)).toBeInTheDocument();
+    });
+  });
+});
+
+```
+
+```javascriptreact
+/**
+ * ProductTracking 컴포넌트
+ * 
+ * 이 컴포넌트는 아직 구현되지 않았습니다.
+ * TDD의 Red 단계: 테스트가 실패하는 것을 확인한 후 구현을 시작합니다.
+ */
+
+// 이 파일은 테스트가 실패하도록 의도적으로 비어있습니다.
+export default function ProductTracking() {
+  return null; // 일부러 null을 반환하여 테스트가 실패하도록 함
+}
+
+```
+
+```javascript
+/**
+ * Product API 서비스
+ * 
+ * 이 파일은 아직 구현되지 않았습니다.
+ * TDD의 Red 단계: 테스트가 실패하는 것을 확인한 후 구현을 시작합니다.
+ */
+
+export const getProductTracking = async (productId) => {
+  // 아직 구현되지 않음 - 테스트가 실패하도록 함
+  throw new Error('Not implemented');
+};
+
+```
+
+
+테스트 실행 가이드 문서 작성 중.
+
+
+```markdown
+# 테스트 실행 가이드
+
+> TDD 워크플로우에 따른 테스트 실행 방법
+
+## 📋 현재 상태
+
+현재 **Red 단계**입니다. 실패하는 테스트가 작성되었으며, 이를 실행하여 실패를 확인해야 합니다.
+
+## 🚀 테스트 실행 방법
+
+### 1. 의존성 설치
+
+먼저 테스트 프레임워크를 설치해야 합니다:
+
+```bash
+# 백엔드 의존성 설치
+cd backend
+npm install
+
+# 프론트엔드 의존성 설치
+cd ../frontend
+npm install
+```
+
+### 2. 백엔드 테스트 실행
+
+```bash
+cd backend
+npm test
+```
+
+**예상 결과**: 모든 테스트가 실패합니다.
+- `app.js`가 `null`을 반환하므로 테스트가 실패합니다.
+- 이는 TDD의 Red 단계로, 의도된 실패입니다.
+
+### 3. 프론트엔드 테스트 실행
+
+```bash
+cd frontend
+npm test
+```
+
+**예상 결과**: 모든 테스트가 실패합니다.
+- `ProductTracking` 컴포넌트가 아직 구현되지 않았으므로 테스트가 실패합니다.
+- 이는 TDD의 Red 단계로, 의도된 실패입니다.
+
+## ✅ 테스트 실패 확인 체크리스트
+
+실패하는 테스트를 확인한 후 다음 단계로 진행합니다:
+
+- [ ] 백엔드 테스트 실행 및 실패 확인
+- [ ] 프론트엔드 테스트 실행 및 실패 확인
+- [ ] 테스트 실패 메시지 확인
+- [ ] 다음 단계 (Green): 최소한의 구현으로 테스트 통과
+
+## 📝 작성된 테스트
+
+### 백엔드 테스트 (`backend/tests/modules/tracking/productTracking.test.js`)
+
+- ✅ `GET /api/products/:id/tracking` 엔드포인트 테스트
+- ✅ 생산자 수익 비율 반환 테스트
+- ✅ 농장 위치 정보 반환 테스트
+- ✅ 원산지 정보 반환 테스트
+- ✅ 존재하지 않는 상품에 대한 404 에러 테스트
+
+### 프론트엔드 테스트 (`frontend/src/pages/Product/__tests__/ProductTracking.test.jsx`)
+
+- ✅ '원두 스토리 추적' 탭 버튼 렌더링 테스트
+- ✅ 탭 클릭 시 추적 정보 표시 테스트
+- ✅ 지도 컴포넌트 렌더링 테스트
+- ✅ 농장 위치 좌표 표시 테스트
+- ✅ 원산지 정보 표시 테스트
+
+## 🔄 다음 단계
+
+테스트 실패를 확인한 후:
+
+1. **Green 단계**: 최소한의 코드로 테스트를 통과시키기
+2. **Refactor 단계**: 코드 품질 개선
+
+---
+
+**작성일**: 2025-12-15
+
+```
+
+
+테스트 실행을 시도합니다. 의존성 설치가 필요할 수 있습니다.
+
+
+
+PowerShell 구문으로 테스트 실행 중.
+
+
+
+테스트 환경 설정과 실패하는 테스트 작성이 완료되었습니다.
+
+## 완료된 작업
+
+### 1. 테스트 환경 설정
+- **백엔드**: Jest + Supertest 설정 완료
+- **프론트엔드**: Jest + React Testing Library 설정 완료
+- `package.json`에 테스트 스크립트 추가
+
+### 2. FR1 기능 테스트 작성 (실패하는 테스트)
+- **백엔드 테스트**: `backend/tests/modules/tracking/productTracking.test.js`
+  - API 엔드포인트 테스트
+  - 생산자 수익 비율 반환 테스트
+  - 농장 위치 정보 테스트
+  - 원산지 정보 테스트
+  
+- **프론트엔드 테스트**: `frontend/src/pages/Product/__tests__/ProductTracking.test.jsx`
+  - 컴포넌트 렌더링 테스트
+  - 탭 클릭 동작 테스트
+  - 지도 컴포넌트 테스트
+
+### 3. 테스트 실행 준비
+- 테스트 실행 가이드 문서 작성: `docs/TEST_EXECUTION.md`
+
+## 다음 단계
+
+테스트를 실행하려면 의존성을 설치하세요:
+
+```bash
+# 백엔드 의존성 설치
+cd backend
+npm install
+
+# 테스트 실행 (실패해야 함 - Red 단계)
+npm test
+```
+
+```bash
+# 프론트엔드 의존성 설치
+cd frontend
+npm install
+
+# 테스트 실행 (실패해야 함 - Red 단계)
+npm test
+```
+
+## 현재 상태
+
+현재 TDD의 Red 단계입니다:
+- 실패하는 테스트 작성 완료
+- 구현은 아직 없음 (의도적으로 `null` 반환)
+- 테스트 실행 시 실패 확인 예정
+
+의존성 설치 후 테스트를 실행하시겠습니까? 아니면 바로 Green 단계(최소 구현)로 진행할까요?
+
+```shellscript
+# 백엔드 의존성 설치
+cd backend
+npm install
+
+# 테스트 실행 (실패해야 함 - Red 단계)
+npm test
+```
+
+```shellscript
+# 프론트엔드 의존성 설치
+cd frontend
+npm install
+
+# 테스트 실행 (실패해야 함 - Red 단계)
+npm test
+```
+
+---
+
+**User**
+
+테스트 커버리지 알려줘
+
+---
+
+**Cursor**
+
+
+테스트 커버리지 확인을 위해 의존성 설치 후 테스트를 실행합니다.
+
+
+
+현재 위치 확인 후 테스트 커버리지 확인 방법을 안내합니다.
+
+
+
+작성된 테스트를 분석해 현재 테스트 커버리지 상태를 정리하고, 커버리지 확인 방법 문서를 작성합니다.
+
+
+```markdown
+# 테스트 커버리지 리포트
+
+> 현재 프로젝트의 테스트 커버리지 현황
+
+## 📊 현재 상태
+
+**현재 단계**: 🔴 **Red (TDD)** - 실패하는 테스트 작성 완료
+
+### 테스트 커버리지 실행 방법
+
+```bash
+# 백엔드 테스트 커버리지
+cd backend
+npm install  # 의존성 설치 (최초 1회)
+npm run test:coverage
+
+# 프론트엔드 테스트 커버리지
+cd frontend
+npm install  # 의존성 설치 (최초 1회)
+npm run test:coverage
+```
+
+## 📈 작성된 테스트 현황
+
+### 백엔드 테스트
+
+#### FR1: 투명 정보 추적 기능
+**파일**: `backend/tests/modules/tracking/productTracking.test.js`
+
+**테스트 케이스**:
+- ✅ `GET /api/products/:id/tracking` - 200 상태 코드 반환
+- ✅ 생산자 수익 비율 반환 검증
+- ✅ 농장 위치 정보 반환 검증 (좌표 유효성 포함)
+- ✅ 원산지 정보 반환 검증
+- ✅ 존재하지 않는 상품에 대한 404 에러 처리
+
+**예상 커버리지 대상**:
+- `src/modules/tracking/` 모듈
+- `src/controllers/` (ProductTrackingController)
+- `src/models/` (Product, Tracking 모델)
+
+### 프론트엔드 테스트
+
+#### FR1: 투명 정보 추적 기능
+**파일**: `frontend/src/pages/Product/__tests__/ProductTracking.test.jsx`
+
+**테스트 케이스**:
+- ✅ '원두 스토리 추적' 탭 버튼 렌더링
+- ✅ 탭 클릭 시 추적 정보 표시
+- ✅ 지도 컴포넌트 렌더링
+- ✅ 농장 위치 좌표 표시
+- ✅ 원산지 정보 표시
+
+**예상 커버리지 대상**:
+- `src/pages/Product/ProductTracking.jsx`
+- `src/services/api/productApi.js`
+- `src/components/tracking/` (지도 컴포넌트)
+
+## 📋 테스트 커버리지 목표
+
+### MVP 목표 (Phase 0)
+
+| 모듈 | 목표 커버리지 | 현재 상태 |
+|------|-------------|----------|
+| **FR1: 투명 정보 추적** | 80% 이상 | 🔴 테스트 작성 완료 (구현 전) |
+| **FR2: 윤리 영향 리포트** | 70% 이상 | ⚪ 미작성 |
+| **FR3: 맞춤형 주문 시스템** | 75% 이상 | ⚪ 미작성 |
+| **FR4: 데이터 검증** | 60% 이상 | ⚪ 미작성 |
+| **FR5: 파트너 관리** | 70% 이상 | ⚪ 미작성 |
+
+### 전체 프로젝트 목표
+
+- **단위 테스트 커버리지**: 70% 이상
+- **통합 테스트 커버리지**: 50% 이상
+- **E2E 테스트**: 핵심 사용자 플로우 100% 커버
+
+## 🔍 커버리지 분석 항목
+
+Jest 커버리지 리포트는 다음 항목을 포함합니다:
+
+- **Statements**: 코드 문장 실행 비율
+- **Branches**: 조건문 분기 실행 비율
+- **Functions**: 함수 실행 비율
+- **Lines**: 코드 라인 실행 비율
+
+### 커버리지 리포트 예시
+
+```
+-------------------|---------|----------|---------|---------|
+File               | % Stmts | % Branch | % Funcs | % Lines |
+-------------------|---------|----------|---------|---------|
+All files          |    0.00 |     0.00 |    0.00 |    0.00 |
+ tracking/         |    0.00 |     0.00 |    0.00 |    0.00 |
+  productTracking  |    0.00 |     0.00 |    0.00 |    0.00 |
+-------------------|---------|----------|---------|---------|
+```
+
+> **참고**: 현재는 구현이 없어 커버리지가 0%입니다. 이는 TDD의 Red 단계로 정상입니다.
+
+## 📝 다음 단계
+
+1. **Green 단계**: 최소한의 구현으로 테스트 통과
+   - 예상 커버리지: 60-70%
+   
+2. **Refactor 단계**: 코드 개선 및 추가 테스트
+   - 목표 커버리지: 80% 이상
+
+3. **다음 기능 테스트 작성**: FR2, FR3 순서로 진행
+
+## 🛠️ 커버리지 리포트 확인
+
+테스트 실행 후 다음 위치에서 리포트를 확인할 수 있습니다:
+
+- **백엔드**: `backend/coverage/index.html`
+- **프론트엔드**: `frontend/coverage/index.html`
+
+브라우저에서 HTML 파일을 열어 시각적인 커버리지 리포트를 확인할 수 있습니다.
+
+## 📚 참고
+
+- [Jest Coverage Documentation](https://jestjs.io/docs/cli#--coverage)
+- [Istanbul Coverage Tool](https://istanbul.js.org/)
+
+---
+
+**마지막 업데이트**: 2025-12-15  
+**현재 단계**: Red (실패하는 테스트 작성 완료)
+
+```
+
+
+현재 테스트 커버리지 상태 요약:
+
+## 현재 테스트 커버리지 현황
+
+### 작성된 테스트 파일
+
+1. 백엔드 테스트
+   - `backend/tests/modules/tracking/productTracking.test.js`
+   - 테스트 케이스: 5개
+
+2. 프론트엔드 테스트
+   - `frontend/src/pages/Product/__tests__/ProductTracking.test.jsx`
+   - 테스트 케이스: 5개
+
+### 커버리지 상태
+
+현재 단계: Red (TDD) — 구현 전 단계
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| 코드 커버리지 | 0% | 구현 코드가 없음 (의도적) |
+| 테스트 작성 완료 | FR1만 완료 | FR2~FR5 미작성 |
+| 테스트 실행 가능 | 아니오 | 의존성 설치 필요 |
+
+### 테스트 커버리지 확인 방법
+
+테스트 커버리지를 확인하려면:
+
+```bash
+# 1. 의존성 설치
+cd backend
+npm install
+
+# 2. 커버리지 리포트 생성
+npm run test:coverage
+
+# 프론트엔드도 동일
+cd ../frontend
+npm install
+npm run test:coverage
+```
+
+### 상세 정보
+
+테스트 커버리지 상세 문서를 작성했습니다:
+- `docs/TEST_COVERAGE.md` - 테스트 커버리지 리포트 및 목표
+
+이 문서에는 다음이 포함됩니다:
+- 작성된 테스트 현황
+- 커버리지 목표 (MVP 단계별)
+- 커버리지 리포트 확인 방법
+- 다음 단계 가이드
+
+현재는 TDD의 Red 단계로, 테스트는 작성되었지만 구현이 없어 커버리지가 0%입니다. 이는 정상입니다.
+
+의존성을 설치하고 테스트를 실행해 실패를 확인하시겠습니까?
+
+```shellscript
+# 1. 의존성 설치
+cd backend
+npm install
+
+# 2. 커버리지 리포트 생성
+npm run test:coverage
+
+# 프론트엔드도 동일
+cd ../frontend
+npm install
+npm run test:coverage
+```
+
+---
+
+**User**
+
+지금까지 작업한 내용을 Report 폴더에 저장해줘
+
+---
+
+**Cursor**
+
+
+지금까지 작업 내용을 정리해 Report 폴더에 저장합니다.
+
+
+
+지금까지 작업 내용을 종합해 리포트 작성 중.
+
+
+```markdown
+# 솔직한 한 잔 (Honest Cup) 프로젝트 진행 리포트
+
+> 프로젝트 초기 설정 및 TDD 워크플로우 적용 현황
+
+**작성일**: 2025-12-15  
+**프로젝트 버전**: 1.0 (MVP)  
+**현재 단계**: 초기 설정 완료, TDD Red 단계
+
+---
+
+## 📋 목차
+
+1. [프로젝트 개요](#프로젝트-개요)
+2. [완료된 작업](#완료된-작업)
+3. [프로젝트 구조](#프로젝트-구조)
+4. [문서화 현황](#문서화-현황)
+5. [테스트 현황](#테스트-현황)
+6. [다음 단계](#다음-단계)
+
+---
+
+## 프로젝트 개요
+
+### 프로젝트 정보
+
+| 항목 | 내용 |
+|------|------|
+| **제품명** | 솔직한 한 잔 (Honest Cup) |
+| **버전** | 1.0 (MVP) |
+| **목표** | 투명하고 윤리적인 커피 소비를 위한 웹 애플리케이션 |
+| **개발 방법론** | TDD (Test-Driven Development) |
+| **현재 단계** | Red 단계 (실패하는 테스트 작성 완료) |
+
+### 핵심 기능 (FR1-FR5)
+
+1. **FR1**: 원두 투명 정보 추적 및 시각화 제공
+2. **FR2**: 개인별 윤리 소비 지표 및 영향 리포트
+3. **FR3**: 통합 원두 검색 및 맞춤형 주문 시스템
+4. **FR4**: 공급망 데이터 검증 및 블록체인 연동 모듈
+5. **FR5**: 파트너 관리 및 자동 정산 대시보드
+
+---
+
+## 완료된 작업
+
+### 1. 프로젝트 초기 설정 ✅
+
+- [x] Git 저장소 초기화
+- [x] GitHub 브랜치 생성 (Coffee, TC)
+- [x] 프로젝트 디렉토리 구조 생성
+- [x] 기본 설정 파일 생성 (.gitignore, docker-compose.yml)
+
+### 2. 문서화 작업 ✅
+
+- [x] README.md 작성 (프로젝트 개요, 기능 명세, 프로젝트 구조)
+- [x] 설치 및 실행 가이드 (docs/INSTALLATION.md)
+- [x] TDD 워크플로우 가이드 (docs/TDD_WORKFLOW.md)
+- [x] 테스트 실행 가이드 (docs/TEST_EXECUTION.md)
+- [x] 테스트 커버리지 리포트 (docs/TEST_COVERAGE.md)
+
+### 3. 프로젝트 구조 생성 ✅
+
+#### 백엔드 구조
+```
+backend/
+├── src/
+│   ├── modules/          # 기능별 모듈
+│   │   ├── auth/
+│   │   ├── commerce/
+│   │   ├── tracking/     # FR1 모듈
+│   │   ├── partner/
+│   │   └── admin/
+│   ├── services/         # 비즈니스 로직 서비스
+│   ├── controllers/
+│   ├── models/
+│   ├── middleware/
+│   ├── utils/
+│   └── config/
+└── tests/                # 테스트 코드
+```
+
+#### 프론트엔드 구조
+```
+frontend/
+├── src/
+│   ├── components/       # UI 컴포넌트
+│   ├── pages/            # 페이지 컴포넌트
+│   │   └── Product/      # FR1 페이지
+│   ├── services/         # API 서비스
+│   ├── hooks/
+│   ├── store/
+│   ├── utils/
+│   └── styles/
+└── public/
+```
+
+### 4. 테스트 환경 설정 ✅
+
+#### 백엔드
+- [x] Jest + Supertest 설치 설정
+- [x] package.json 테스트 스크립트 추가
+- [x] Jest 설정 파일 구성
+
+#### 프론트엔드
+- [x] Jest + React Testing Library 설치 설정
+- [x] package.json 테스트 스크립트 추가
+- [x] setupTests.js 파일 생성
+
+### 5. TDD 워크플로우 적용 ✅
+
+#### Red 단계 완료 (실패하는 테스트 작성)
+
+**백엔드 테스트**:
+- 파일: `backend/tests/modules/tracking/productTracking.test.js`
+- 테스트 케이스: 5개
+  - API 엔드포인트 테스트
+  - 생산자 수익 비율 반환 검증
+  - 농장 위치 정보 검증
+  - 원산지 정보 검증
+  - 404 에러 처리
+
+**프론트엔드 테스트**:
+- 파일: `frontend/src/pages/Product/__tests__/ProductTracking.test.jsx`
+- 테스트 케이스: 5개
+  - 컴포넌트 렌더링 테스트
+  - 탭 클릭 동작 테스트
+  - 지도 컴포넌트 테스트
+  - 농장 위치 표시 테스트
+  - 원산지 정보 표시 테스트
+
+---
+
+## 프로젝트 구조
+
+### 전체 디렉토리 구조
+
+```
+Coffee/
+├── frontend/                 # 프론트엔드 애플리케이션
+│   ├── src/
+│   │   ├── components/       # 재사용 가능한 UI 컴포넌트
+│   │   ├── pages/            # 페이지 컴포넌트
+│   │   ├── services/         # API 서비스 레이어
+│   │   ├── hooks/            # 커스텀 React Hooks
+│   │   ├── utils/            # 유틸리티 함수
+│   │   ├── store/            # 상태 관리
+│   │   └── styles/           # 전역 스타일
+│   └── package.json
+│
+├── backend/                  # 백엔드 애플리케이션
+│   ├── src/
+│   │   ├── modules/          # 기능별 모듈
+│   │   ├── services/         # 비즈니스 로직 서비스
+│   │   ├── controllers/      # 컨트롤러
+│   │   ├── models/            # 데이터 모델
+│   │   ├── middleware/       # 미들웨어
+│   │   └── config/           # 설정 파일
+│   ├── tests/                # 테스트 코드
+│   └── package.json
+│
+├── database/                 # 데이터베이스 관련
+│   ├── migrations/           # DB 마이그레이션 스크립트
+│   ├── seeds/                # 시드 데이터
+│   └── schemas/              # DB 스키마 정의
+│
+├── blockchain/               # 블록체인 관련
+│   ├── contracts/            # 스마트 컨트랙트
+│   └── integration/         # 블록체인 연동 코드
+│
+├── docs/                     # 문서
+│   ├── api/                  # API 명세서
+│   ├── design/               # 디자인 문서
+│   ├── architecture/         # 아키텍처 문서
+│   ├── INSTALLATION.md       # 설치 가이드
+│   ├── TDD_WORKFLOW.md       # TDD 워크플로우
+│   ├── TEST_EXECUTION.md     # 테스트 실행 가이드
+│   └── TEST_COVERAGE.md      # 테스트 커버리지 리포트
+│
+├── Report/                   # 프로젝트 리포트
+│   └── PROJECT_STATUS_REPORT.md
+│
+├── .gitignore
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## 문서화 현황
+
+### 작성된 문서
+
+| 문서명 | 위치 | 상태 | 설명 |
+|--------|------|------|------|
+| **README.md** | 루트 | ✅ 완료 | 프로젝트 개요, 기능 명세, 프로젝트 구조 |
+| **INSTALLATION.md** | docs/ | ✅ 완료 | 설치 및 실행 가이드 |
+| **TDD_WORKFLOW.md** | docs/ | ✅ 완료 | TDD 워크플로우 가이드 |
+| **TEST_EXECUTION.md** | docs/ | ✅ 완료 | 테스트 실행 방법 |
+| **TEST_COVERAGE.md** | docs/ | ✅ 완료 | 테스트 커버리지 현황 |
+| **PRD.md** | docs/ | ✅ 완료 | 제품 요구사항 정의서 |
+
+### 문서 커버리지
+
+- ✅ 프로젝트 개요 및 비전
+- ✅ 기능 명세 (FR1-FR5)
+- ✅ 프로젝트 구조
+- ✅ 설치 및 실행 방법
+- ✅ 테스트 가이드
+- ⚪ API 명세서 (예정)
+- ⚪ 아키텍처 문서 (예정)
+- ⚪ 디자인 문서 (예정)
+
+---
+
+## 테스트 현황
+
+### 테스트 환경
+
+#### 백엔드
+- **프레임워크**: Jest + Supertest
+- **설정 파일**: `backend/package.json` (Jest 설정 포함)
+- **테스트 디렉토리**: `backend/tests/`
+
+#### 프론트엔드
+- **프레임워크**: Jest + React Testing Library
+- **설정 파일**: `frontend/package.json` (Jest 설정 포함)
+- **테스트 디렉토리**: `frontend/src/**/__tests__/`
+
+### 작성된 테스트
+
+#### FR1: 투명 정보 추적 기능
+
+**백엔드 테스트** (`backend/tests/modules/tracking/productTracking.test.js`)
+- ✅ `GET /api/products/:id/tracking` - 200 상태 코드
+- ✅ 생산자 수익 비율 반환 검증
+- ✅ 농장 위치 정보 반환 검증
+- ✅ 원산지 정보 반환 검증
+- ✅ 404 에러 처리
+
+**프론트엔드 테스트** (`frontend/src/pages/Product/__tests__/ProductTracking.test.jsx`)
+- ✅ '원두 스토리 추적' 탭 버튼 렌더링
+- ✅ 탭 클릭 시 추적 정보 표시
+- ✅ 지도 컴포넌트 렌더링
+- ✅ 농장 위치 좌표 표시
+- ✅ 원산지 정보 표시
+
+### 테스트 커버리지
+
+| 모듈 | 테스트 작성 | 구현 상태 | 커버리지 |
+|------|------------|----------|----------|
+| **FR1: 투명 정보 추적** | ✅ 완료 | ⚪ 미구현 | 0% (의도적) |
+| **FR2: 윤리 영향 리포트** | ⚪ 미작성 | ⚪ 미구현 | - |
+| **FR3: 맞춤형 주문 시스템** | ⚪ 미작성 | ⚪ 미구현 | - |
+| **FR4: 데이터 검증** | ⚪ 미작성 | ⚪ 미구현 | - |
+| **FR5: 파트너 관리** | ⚪ 미작성 | ⚪ 미구현 | - |
+
+**현재 상태**: Red 단계 (TDD) - 실패하는 테스트 작성 완료
+
+---
+
+## Git 저장소 현황
+
+### 브랜치
+
+- **Coffee**: 메인 개발 브랜치
+- **TC**: 테스트 관련 브랜치
+
+### 주요 커밋
+
+1. `readme 파일생성` - README.md 초기 작성
+2. `프로젝트 구조 추가` - 프로젝트 디렉토리 구조 생성
+3. `프로젝트 구조 생성` - 전체 프로젝트 구조 생성
+4. `Install 방법` - 설치 가이드 문서 추가
+
+---
+
+## 다음 단계
+
+### 즉시 진행 가능한 작업
+
+1. **의존성 설치**
+   ```bash
+   cd backend && npm install
+   cd ../frontend && npm install
+   ```
+
+2. **테스트 실행 및 실패 확인** (Red 단계 완료 확인)
+   ```bash
+   cd backend && npm test
+   cd ../frontend && npm test
+   ```
+
+3. **Green 단계: 최소한의 구현**
+   - 백엔드: Express 앱 및 API 엔드포인트 구현
+   - 프론트엔드: ProductTracking 컴포넌트 구현
+   - 테스트 통과 확인
+
+4. **Refactor 단계: 코드 개선**
+   - 코드 품질 개선
+   - 중복 제거
+   - 성능 최적화
+
+### 중기 작업 (1-2주)
+
+1. **FR2 테스트 작성 및 구현**
+   - 윤리 영향 리포트 기능
+   - 탄소 발자국 계산 로직
+
+2. **FR3 테스트 작성 및 구현**
+   - 원두 검색 및 필터링
+   - 주문/결제 프로세스
+
+3. **데이터베이스 스키마 설계**
+   - 마이그레이션 파일 작성
+   - 시드 데이터 생성
+
+### 장기 작업 (1-3개월)
+
+1. **FR4, FR5 구현**
+2. **블록체인 연동** (FR4)
+3. **파트너 대시보드** (FR5)
+4. **E2E 테스트 작성**
+5. **CI/CD 파이프라인 구축**
+
+---
+
+## 리스크 및 이슈
+
+### 현재 리스크
+
+1. **의존성 설치 필요**
+   - npm install 실행 필요
+   - PowerShell 실행 정책 이슈 가능성
+
+2. **구현 코드 부재**
+   - 현재 테스트만 작성됨
+   - Green 단계 진행 필요
+
+3. **데이터베이스 미설정**
+   - PostgreSQL 스키마 미정의
+   - 마이그레이션 파일 미작성
+
+### 완화 전략
+
+- 단계별 구현으로 리스크 최소화
+- TDD 워크플로우로 안정적인 개발
+- 문서화를 통한 명확한 가이드 제공
+
+---
+
+## 성과 요약
+
+### 완료된 작업
+
+- ✅ 프로젝트 초기 설정 완료
+- ✅ 전체 프로젝트 구조 생성
+- ✅ 문서화 완료 (6개 문서)
+- ✅ 테스트 환경 설정 완료
+- ✅ FR1 기능 테스트 작성 완료 (10개 테스트 케이스)
+
+### 통계
+
+- **작성된 문서**: 6개
+- **생성된 디렉토리**: 30+ 개
+- **작성된 테스트 파일**: 2개
+- **테스트 케이스**: 10개
+- **Git 커밋**: 4개
+
+---
+
+## 결론
+
+프로젝트 초기 설정 및 TDD 워크플로우 적용이 성공적으로 완료되었습니다. 현재 Red 단계에서 실패하는 테스트가 작성되었으며, 다음 단계인 Green 단계(최소 구현)로 진행할 준비가 되었습니다.
+
+프로젝트는 체계적인 구조와 명확한 문서화를 바탕으로 안정적으로 진행되고 있으며, TDD 방법론을 통해 품질 높은 코드 개발이 가능한 환경이 구축되었습니다.
+
+---
+
+**리포트 작성일**: 2025-12-15  
+**다음 리뷰 예정일**: Green 단계 완료 후
+
+```
+
+```markdown
+# 작업 요약 리포트
+
+> 지금까지 수행한 작업의 간단한 요약
+
+## 📅 작업 기간
+
+**시작일**: 2025-12-15  
+**현재일**: 2025-12-15
+
+## ✅ 완료된 작업 목록
+
+### 1. 프로젝트 문서화
+- [x] README.md 작성
+- [x] 설치 가이드 작성
+- [x] TDD 워크플로우 문서 작성
+- [x] 테스트 가이드 문서 작성
+- [x] 테스트 커버리지 리포트 작성
+
+### 2. 프로젝트 구조 생성
+- [x] 프론트엔드 디렉토리 구조 생성
+- [x] 백엔드 디렉토리 구조 생성
+- [x] 데이터베이스 디렉토리 생성
+- [x] 블록체인 디렉토리 생성
+- [x] 문서 디렉토리 생성
+
+### 3. 테스트 환경 설정
+- [x] 백엔드 테스트 프레임워크 설정 (Jest + Supertest)
+- [x] 프론트엔드 테스트 프레임워크 설정 (Jest + React Testing Library)
+- [x] package.json 테스트 스크립트 추가
+
+### 4. TDD 적용
+- [x] FR1 백엔드 테스트 작성 (5개 케이스)
+- [x] FR1 프론트엔드 테스트 작성 (5개 케이스)
+
+### 5. Git 관리
+- [x] Git 저장소 초기화
+- [x] Coffee 브랜치 생성 및 커밋
+- [x] TC 브랜치 생성
+
+## 📊 작업 통계
+
+- **생성된 파일**: 20+ 개
+- **생성된 디렉토리**: 30+ 개
+- **작성된 문서**: 6개
+- **작성된 테스트**: 2개 파일, 10개 케이스
+- **Git 커밋**: 4개
+
+## 🎯 현재 상태
+
+**TDD 단계**: 🔴 Red (실패하는 테스트 작성 완료)  
+**다음 단계**: 🟢 Green (최소 구현으로 테스트 통과)
+
+## 📝 주요 파일 목록
+
+### 문서
+- `README.md` - 프로젝트 개요
+- `docs/INSTALLATION.md` - 설치 가이드
+- `docs/TDD_WORKFLOW.md` - TDD 가이드
+- `docs/TEST_EXECUTION.md` - 테스트 실행 가이드
+- `docs/TEST_COVERAGE.md` - 커버리지 리포트
+
+### 테스트
+- `backend/tests/modules/tracking/productTracking.test.js`
+- `frontend/src/pages/Product/__tests__/ProductTracking.test.jsx`
+
+### 설정
+- `backend/package.json` - 백엔드 설정
+- `frontend/package.json` - 프론트엔드 설정
+- `docker-compose.yml` - Docker 설정
+- `.gitignore` - Git 제외 파일
+
+---
+
+**작성일**: 2025-12-15
+
+```
+
+
+지금까지 작업 내용을 Report 폴더에 저장했습니다.
+
+## 생성된 리포트 파일
+
+### 1. **PROJECT_STATUS_REPORT.md** (상세 리포트)
+   - 프로젝트 개요 및 완료된 작업
+   - 프로젝트 구조 상세 설명
+   - 문서화 현황
+   - 테스트 현황 및 커버리지
+   - 다음 단계 계획
+   - 리스크 및 이슈
+
+### 2. **WORK_SUMMARY.md** (작업 요약)
+   - 완료된 작업 목록
+   - 작업 통계
+   - 현재 상태
+   - 주요 파일 목록
+
+### 3. **FILES_LIST.txt** (파일 목록)
+   - 프로젝트 내 주요 파일 목록 (마크다운, JavaScript, JSON, YAML)
+
+## 리포트 내용 요약
+
+### 완료된 작업
+- ✅ 프로젝트 문서화 (6개 문서)
+- ✅ 프로젝트 구조 생성 (30+ 디렉토리)
+- ✅ 테스트 환경 설정
+- ✅ FR1 기능 테스트 작성 (10개 테스트 케이스)
+- ✅ Git 저장소 관리
+
+### 현재 상태
+- **TDD 단계**: Red (실패하는 테스트 작성 완료)
+- **다음 단계**: Green (최소 구현으로 테스트 통과)
+
+### 통계
+- 생성된 파일: 20+ 개
+- 작성된 문서: 6개
+- 작성된 테스트: 10개 케이스
+- Git 커밋: 4개
+
+모든 리포트는 `Report/` 폴더에 저장되었습니다. 상세 내용은 `PROJECT_STATUS_REPORT.md`를 참고하세요.
+

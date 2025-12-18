@@ -4,11 +4,29 @@
   "description": "솔직한 한 잔 (Honest Cup) - 백엔드 애플리케이션",
   "private": true,
   "scripts": {
-    "dev": "echo 'Development server start script'",
-    "start": "echo 'Production server start script'",
-    "test": "echo 'Test script'"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "@types/jest": "^29.5.11"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ]
+  }
 }
 
