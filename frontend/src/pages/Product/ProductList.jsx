@@ -1,0 +1,55 @@
+/**
+ * 상품 목록 페이지
+ * 원두 상품 목록을 표시하는 페이지
+ */
+
+import React from 'react';
+
+function ProductList() {
+  return (
+    <div style={styles.container}>
+      <h1 style={styles.title}>상품 목록</h1>
+      <p style={styles.description}>
+        투명하고 윤리적인 원두를 선택하세요.
+      </p>
+      
+      <div style={styles.placeholder}>
+        <p>상품 목록 기능은 곧 구현될 예정입니다.</p>
+        <p style={styles.note}>
+          FR1 (투명 정보 추적) 및 FR3 (맞춤형 주문 시스템) 구현 시 완성됩니다.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    width: '100%',
+  },
+  title: {
+    fontSize: '2rem',
+    marginBottom: '1rem',
+    color: '#333',
+  },
+  description: {
+    fontSize: '1.1rem',
+    color: '#666',
+    marginBottom: '2rem',
+  },
+  placeholder: {
+    padding: '4rem 2rem',
+    textAlign: 'center',
+    backgroundColor: '#f8f9fa',
+    borderRadius: '8px',
+    color: '#666',
+  },
+  note: {
+    marginTop: '1rem',
+    fontSize: '0.9rem',
+    color: '#999',
+  },
+};
+
+export default ProductList;
+
