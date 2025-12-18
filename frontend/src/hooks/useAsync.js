@@ -78,8 +78,9 @@ export function useAsync(asyncFunction, immediate = false) {
     if (immediate) {
       execute();
     }
+    // execute는 asyncFunction에 의존하므로 의도적으로 한 번만 실행
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [immediate]);
 
   return {
     data,

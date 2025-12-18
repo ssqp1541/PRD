@@ -24,11 +24,7 @@ function ProductSearch() {
   const { error, setError, clearError } = useErrorHandler();
   const isMobile = useResponsive(768);
 
-  // 초기 로드 시 모든 상품 조회
-  useEffect(() => {
-    loadProducts();
-  }, [loadProducts]);
-
+  // 비동기 함수를 메모이제이션
   const loadProducts = useCallback(async (searchFilters = {}) => {
     setIsLoading(true);
     clearError();
@@ -52,6 +48,11 @@ function ProductSearch() {
       setIsLoading(false);
     }
   }, [setError, clearError]);
+
+  // 초기 로드 시 모든 상품 조회
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);

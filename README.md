@@ -793,7 +793,7 @@ npm run test:coverage
 - [ ] `constants/theme.js` 생성 (색상, 폰트, 간격 등 테마 값 통합)
 - [ ] 하드코딩된 값들을 상수로 교체
 
-**7. useEffect 의존성 배열 수정**
+**7. useEffect 의존성 배열 수정** _ 작업완료
 - [ ] `EthicalImpact.jsx`에서 `loadEthicalImpact` 함수를 `useCallback`으로 메모이제이션
 - [ ] `ProductTracking.jsx`에서 `loadTrackingData` 함수를 `useCallback`으로 메모이제이션
 - [ ] 모든 `useEffect`의 의존성 배열 검증 및 수정
