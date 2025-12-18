@@ -3,39 +3,47 @@
  * 정산 보고서 페이지 컴포넌트
  */
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { getSettlement } from '../../services/api/partnerApi';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import ErrorMessage from '../../components/common/ErrorMessage';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
+import { useAsync } from '../../hooks/useAsync';
+import { useErrorHandler } from '../../hooks/useErrorHandler';
 
 function SettlementReport() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [settlement, setSettlement] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { error: validationError, setError: setValidationError, clearError: clearValidationError } = useErrorHandler();
+
+  // 비동기 함수를 메모이제이션
+  const fetchSettlement = useCallback(
+    () => {
+      if (!startDate || !endDate) {
+        throw new Error('시작일과 종료일을 모두 입력해주세요.');
+      }
+      return getSettlement(startDate, endDate).then(result => result.settlement);
+    },
+    [startDate, endDate]
+  );
+
+  const { data: settlement, loading: isLoading, error: asyncError, execute, reset } = useAsync(
+    fetchSettlement,
+    false
+  );
 
   const handleSearch = async () => {
-    if (!startDate || !endDate) {
-      setError('시작일과 종료일을 모두 입력해주세요.');
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-    setSettlement(null);
-
+    clearValidationError();
+    reset();
     try {
-      const result = await getSettlement(startDate, endDate);
-      setSettlement(result.settlement);
+      await execute();
     } catch (err) {
-      setError(err.message || '정산 데이터를 가져오는데 실패했습니다.');
-    } finally {
-      setIsLoading(false);
+      // 에러는 useAsync가 처리
     }
   };
+
+  const error = validationError || asyncError;
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('ko-KR', {
@@ -84,7 +92,10 @@ function SettlementReport() {
         <ErrorMessage
           message={error}
           type="error"
-          onClose={() => setError(null)}
+          onClose={() => {
+            clearValidationError();
+            reset();
+          }}
           style={styles.errorMessage}
         />
       )}

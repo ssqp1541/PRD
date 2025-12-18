@@ -783,7 +783,7 @@ npm run test:coverage
 - [ ] `ProductList.jsx`에서 중복된 반응형 로직 제거 및 `useResponsive` 적용
 - [ ] `Footer.jsx`에서 중복된 반응형 로직 제거 및 `useResponsive` 적용
 
-**5. 공통 로직 커스텀 훅화**
+**5. 공통 로직 커스텀 훅화** _ 작업완료
 - [ ] `hooks/useErrorHandler.js` 커스텀 훅 생성 (에러 처리 로직 통합)
 - [ ] `hooks/useAsync.js` 커스텀 훅 생성 (비동기 데이터 로딩 패턴 통합)
 - [ ] 각 컴포넌트에서 공통 로직을 커스텀 훅으로 교체
