@@ -1,9 +1,25 @@
 /**
  * LazyImage 컴포넌트
  * 지연 로딩 이미지 컴포넌트
+ * IntersectionObserver를 사용하여 뷰포트에 들어올 때 이미지를 로드합니다.
+ * 
+ * @param {Object} props - 컴포넌트 props
+ * @param {string} props.src - 이미지 URL
+ * @param {string} props.alt - 이미지 대체 텍스트
+ * @param {string} props.placeholder - 플레이스홀더 이미지 URL (기본값: '/images/placeholder.jpg')
+ * @param {Object} props.style - 인라인 스타일 객체
+ * @returns {JSX.Element} LazyImage 컴포넌트
+ * 
+ * @example
+ * <LazyImage
+ *   src="/images/product.jpg"
+ *   alt="상품 이미지"
+ *   style={{ width: '100%', height: '200px' }}
+ * />
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
+import PropTypes from 'prop-types';
 import { getWebPImageUrl, handleImageError } from '../../utils/imageUtils';
 
 function LazyImage({
@@ -81,5 +97,17 @@ function LazyImage({
   );
 }
 
-export default LazyImage;
+LazyImage.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  style: PropTypes.object,
+};
+
+LazyImage.defaultProps = {
+  placeholder: '/images/placeholder.jpg',
+  style: {},
+};
+
+export default memo(LazyImage);
 

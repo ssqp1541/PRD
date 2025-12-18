@@ -1,9 +1,26 @@
 /**
  * Button 컴포넌트
  * 재사용 가능한 버튼 컴포넌트
+ * 
+ * @param {Object} props - 컴포넌트 props
+ * @param {string} props.variant - 버튼 스타일 변형 ('primary' | 'secondary' | 'danger' | 'outline')
+ * @param {string} props.size - 버튼 크기 ('small' | 'medium' | 'large')
+ * @param {boolean} props.disabled - 비활성화 여부
+ * @param {boolean} props.loading - 로딩 상태 여부
+ * @param {Function} props.onClick - 클릭 이벤트 핸들러
+ * @param {React.ReactNode} props.children - 버튼 내용
+ * @param {string} props.type - 버튼 타입 ('button' | 'submit' | 'reset')
+ * @param {Object} props.style - 인라인 스타일 객체
+ * @returns {JSX.Element} Button 컴포넌트
+ * 
+ * @example
+ * <Button variant="primary" size="large" onClick={handleClick}>
+ *   클릭하세요
+ * </Button>
  */
 
-import React from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { colors, fontSizes, fontWeights, spacing, borderRadius, transitions } from '../../constants/theme';
 
 function Button({
@@ -93,5 +110,25 @@ function Button({
   );
 }
 
-export default Button;
+Button.propTypes = {
+  variant: PropTypes.oneOf(['primary', 'secondary', 'danger', 'outline']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool,
+  onClick: PropTypes.func,
+  children: PropTypes.node.isRequired,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  style: PropTypes.object,
+};
+
+Button.defaultProps = {
+  variant: 'primary',
+  size: 'medium',
+  disabled: false,
+  loading: false,
+  type: 'button',
+  style: {},
+};
+
+export default memo(Button);
 
