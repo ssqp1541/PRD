@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import ErrorMessage from '../../components/common/ErrorMessage';
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -51,9 +52,11 @@ function Register() {
         <h2 style={styles.title}>회원가입</h2>
         
         {error && (
-          <div style={styles.errorMessage}>
-            {error}
-          </div>
+          <ErrorMessage
+            message={error}
+            type="error"
+            onClose={() => setError('')}
+          />
         )}
 
         <form onSubmit={handleSubmit} style={styles.form}>
@@ -190,13 +193,6 @@ const styles = {
     fontSize: '1rem',
     cursor: 'pointer',
     marginTop: '1rem',
-  },
-  errorMessage: {
-    backgroundColor: '#fee',
-    color: '#c33',
-    padding: '0.75rem',
-    borderRadius: '4px',
-    marginBottom: '1rem',
   },
   linkContainer: {
     marginTop: '1rem',

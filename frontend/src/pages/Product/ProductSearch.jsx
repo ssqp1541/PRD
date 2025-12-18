@@ -3,10 +3,14 @@
  * 상품 검색 페이지 컴포넌트 (반응형 지원)
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { searchProducts } from '../../services/api/productApi';
 import ProductFilter from '../../components/product/ProductFilter';
 import ProductList from '../../components/product/ProductList';
+import { useResponsive } from '../../hooks/useResponsive';
+import { useErrorHandler } from '../../hooks/useErrorHandler';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
+import ErrorMessage from '../../components/common/ErrorMessage';
 
 function ProductSearch() {
   const [filters, setFilters] = useState({
@@ -16,28 +20,14 @@ function ProductSearch() {
   });
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const { error, setError, clearError } = useErrorHandler();
+  const isMobile = useResponsive(768);
 
-  // 초기 로드 시 모든 상품 조회
-  useEffect(() => {
-    loadProducts();
-  }, []);
-
-  // 화면 크기 감지 (반응형)
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const loadProducts = async (searchFilters = {}) => {
+  // 비동기 함수를 메모이제이션
+  const loadProducts = useCallback(async (searchFilters = {}) => {
     setIsLoading(true);
-    setError(null);
+    clearError();
     setHasSearched(true);
 
     try {
@@ -57,7 +47,12 @@ function ProductSearch() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [setError, clearError]);
+
+  // 초기 로드 시 모든 상품 조회
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
@@ -106,15 +101,15 @@ function ProductSearch() {
         {/* 검색 결과 섹션 */}
         <main style={styles.main}>
           {isLoading && (
-            <div style={styles.loading}>
-              <p>검색 중...</p>
-            </div>
+            <LoadingSpinner message="검색 중..." />
           )}
 
           {error && (
-            <div style={styles.error}>
-              <p>{error}</p>
-            </div>
+            <ErrorMessage
+              message={error}
+              type="error"
+              onClose={clearError}
+            />
           )}
 
           {!isLoading && !error && (
@@ -182,18 +177,6 @@ const styles = {
   },
   main: {
     minHeight: '400px',
-  },
-  loading: {
-    padding: '2rem',
-    textAlign: 'center',
-    color: '#666',
-  },
-  error: {
-    padding: '2rem',
-    backgroundColor: '#fee',
-    color: '#c33',
-    borderRadius: '4px',
-    textAlign: 'center',
   },
   resultHeader: {
     marginBottom: '1.5rem',

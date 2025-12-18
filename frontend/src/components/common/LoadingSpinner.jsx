@@ -1,9 +1,19 @@
 /**
  * LoadingSpinner 컴포넌트
  * 로딩 상태 표시 컴포넌트
+ * 
+ * @param {Object} props - 컴포넌트 props
+ * @param {string} props.size - 스피너 크기 ('small' | 'medium' | 'large')
+ * @param {boolean} props.fullScreen - 전체 화면 모드 여부
+ * @param {string} props.message - 로딩 메시지
+ * @returns {JSX.Element} LoadingSpinner 컴포넌트
+ * 
+ * @example
+ * <LoadingSpinner size="large" message="데이터를 불러오는 중..." />
  */
 
-import React from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 
 function LoadingSpinner({
   size = 'medium',
@@ -69,5 +79,17 @@ function LoadingSpinner({
   );
 }
 
-export default LoadingSpinner;
+LoadingSpinner.propTypes = {
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  fullScreen: PropTypes.bool,
+  message: PropTypes.string,
+};
+
+LoadingSpinner.defaultProps = {
+  size: 'medium',
+  fullScreen: false,
+  message: '로딩 중...',
+};
+
+export default memo(LoadingSpinner);
 

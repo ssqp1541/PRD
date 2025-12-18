@@ -3,36 +3,33 @@
  * 상품 추적 정보를 표시하는 컴포넌트
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getProductTracking } from '../../services/api/productApi';
 import FarmMap from '../../components/tracking/FarmMap';
+import { useAsync } from '../../hooks/useAsync';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
+import ErrorMessage from '../../components/common/ErrorMessage';
 
 function ProductTracking({ productId }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [trackingData, setTrackingData] = useState(null);
-  const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('info'); // 'info' 또는 'tracking'
+
+  // 비동기 함수를 메모이제이션
+  const fetchTrackingData = useCallback(
+    () => getProductTracking(productId),
+    [productId]
+  );
+
+  const { data: trackingData, loading: isLoading, error, execute } = useAsync(
+    fetchTrackingData,
+    false
+  );
 
   // 추적 정보 로드
   useEffect(() => {
     if (activeTab === 'tracking' && !trackingData && !error) {
-      loadTrackingData();
+      execute();
     }
-  }, [activeTab, productId]);
-
-  const loadTrackingData = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const data = await getProductTracking(productId);
-      setTrackingData(data);
-    } catch (err) {
-      setError(err.message || '추적 정보를 불러오는데 실패했습니다.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [activeTab, productId, trackingData, error, execute]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -65,15 +62,15 @@ function ProductTracking({ productId }) {
         {activeTab === 'tracking' && (
           <>
             {isLoading && (
-              <div style={styles.loading}>
-                <p>추적 정보를 불러오는 중...</p>
-              </div>
+              <LoadingSpinner message="추적 정보를 불러오는 중..." />
             )}
 
             {error && (
-              <div style={styles.error}>
-                <p>{error}</p>
-              </div>
+              <ErrorMessage
+                message={error}
+                type="error"
+                onClose={() => {}}
+              />
             )}
 
             {!isLoading && !error && trackingData && (
@@ -154,18 +151,6 @@ const styles = {
   },
   content: {
     minHeight: '400px',
-  },
-  loading: {
-    padding: '2rem',
-    textAlign: 'center',
-    color: '#666',
-  },
-  error: {
-    padding: '2rem',
-    backgroundColor: '#fee',
-    color: '#c33',
-    borderRadius: '4px',
-    textAlign: 'center',
   },
   trackingInfo: {
     display: 'flex',

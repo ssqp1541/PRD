@@ -6,25 +6,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useResponsive } from '../../hooks/useResponsive';
+import { colors, fontSizes, fontWeights, spacing, borderRadius, shadows, zIndex, transitions, maxWidth } from '../../constants/theme';
 
 function Header() {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const isMobile = useResponsive(768);
 
-  // 화면 크기 감지 (반응형)
+  // 데스크톱으로 전환될 때 모바일 메뉴 닫기
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-      if (window.innerWidth > 768) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    if (!isMobile) {
+      setIsMobileMenuOpen(false);
+    }
+  }, [isMobile]);
 
   const handleLogout = () => {
     logout();
@@ -126,125 +122,125 @@ function Header() {
 
 const styles = {
   header: {
-    backgroundColor: '#fff',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    padding: '1rem 0',
+    backgroundColor: colors.background.white,
+    boxShadow: shadows.md,
+    padding: `${spacing.base} 0`,
     position: 'sticky',
     top: 0,
-    zIndex: 100,
+    zIndex: zIndex.dropdown,
   },
   container: {
-    maxWidth: '1200px',
+    maxWidth: maxWidth.xl,
     margin: '0 auto',
-    padding: '0 1rem',
+    padding: `0 ${spacing.base}`,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   logo: {
     textDecoration: 'none',
-    color: '#333',
+    color: colors.text.primary,
   },
   logoText: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#007bff',
+    fontSize: fontSizes['2xl'],
+    fontWeight: fontWeights.bold,
+    color: colors.primary,
     margin: 0,
   },
   nav: {
     display: 'flex',
-    gap: '2rem',
+    gap: spacing.xl,
     flex: 1,
     justifyContent: 'center',
   },
   navLink: {
     textDecoration: 'none',
-    color: '#333',
-    fontWeight: '500',
-    transition: 'color 0.2s',
+    color: colors.text.primary,
+    fontWeight: fontWeights.medium,
+    transition: `color ${transitions.base}`,
   },
   userSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '1rem',
+    gap: spacing.base,
   },
   userName: {
-    color: '#666',
-    fontSize: '0.9rem',
+    color: colors.text.secondary,
+    fontSize: fontSizes.sm,
   },
   logoutButton: {
-    padding: '0.5rem 1rem',
-    backgroundColor: '#dc3545',
-    color: 'white',
+    padding: `${spacing.sm} ${spacing.base}`,
+    backgroundColor: colors.danger,
+    color: colors.text.inverse,
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: borderRadius.sm,
     cursor: 'pointer',
-    fontSize: '0.9rem',
+    fontSize: fontSizes.sm,
   },
   authLink: {
     textDecoration: 'none',
-    color: '#333',
-    padding: '0.5rem 1rem',
+    color: colors.text.primary,
+    padding: `${spacing.sm} ${spacing.base}`,
   },
   registerLink: {
     textDecoration: 'none',
-    color: 'white',
-    backgroundColor: '#007bff',
-    padding: '0.5rem 1rem',
-    borderRadius: '4px',
+    color: colors.text.inverse,
+    backgroundColor: colors.primary,
+    padding: `${spacing.sm} ${spacing.base}`,
+    borderRadius: borderRadius.sm,
   },
   mobileMenuButton: {
     background: 'none',
     border: 'none',
-    fontSize: '1.5rem',
+    fontSize: fontSizes['2xl'],
     cursor: 'pointer',
-    padding: '0.5rem',
+    padding: spacing.sm,
   },
   hamburgerIcon: {
-    color: '#333',
+    color: colors.text.primary,
   },
   mobileMenu: {
     position: 'absolute',
     top: '100%',
     left: 0,
     right: 0,
-    backgroundColor: '#fff',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-    borderTop: '1px solid #dee2e6',
+    backgroundColor: colors.background.white,
+    boxShadow: shadows.lg,
+    borderTop: `1px solid ${colors.border.light}`,
   },
   mobileNav: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '1rem',
+    padding: spacing.base,
   },
   mobileNavLink: {
     textDecoration: 'none',
-    color: '#333',
-    padding: '0.75rem 0',
-    borderBottom: '1px solid #f0f0f0',
-    fontWeight: '500',
+    color: colors.text.primary,
+    padding: `${spacing.md} 0`,
+    borderBottom: `1px solid ${colors.background.light}`,
+    fontWeight: fontWeights.medium,
   },
   mobileUserInfo: {
-    marginTop: '1rem',
-    paddingTop: '1rem',
-    borderTop: '2px solid #dee2e6',
+    marginTop: spacing.base,
+    paddingTop: spacing.base,
+    borderTop: `2px solid ${colors.border.light}`,
     display: 'flex',
     flexDirection: 'column',
-    gap: '0.5rem',
+    gap: spacing.sm,
   },
   mobileUserName: {
-    color: '#666',
-    fontSize: '0.9rem',
-    padding: '0.5rem 0',
+    color: colors.text.secondary,
+    fontSize: fontSizes.sm,
+    padding: `${spacing.sm} 0`,
   },
   mobileLogoutButton: {
-    padding: '0.75rem',
-    backgroundColor: '#dc3545',
-    color: 'white',
+    padding: spacing.md,
+    backgroundColor: colors.danger,
+    color: colors.text.inverse,
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: borderRadius.sm,
     cursor: 'pointer',
-    fontSize: '0.9rem',
+    fontSize: fontSizes.sm,
     width: '100%',
   },
 };
