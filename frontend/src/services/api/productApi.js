@@ -1,10 +1,14 @@
 /**
  * Product API 서비스
  * 상품 관련 API 호출 함수
+ * 
+ * 참고: 인증 토큰은 authApi.js의 axios 인터셉터를 통해 자동으로 추가됩니다.
  */
 
 import axios from 'axios';
 import apiConfig from '../../config/api';
+// authApi를 import하여 axios 인터셉터가 활성화되도록 함
+import '../../services/api/authApi';
 
 const API_BASE_URL = apiConfig.BASE_URL;
 

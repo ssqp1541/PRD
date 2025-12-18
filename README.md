@@ -758,7 +758,7 @@ npm run test:coverage
 
 #### 🔴 Phase 1: 긴급 수정 (1주 이내)
 
-**1. API 토큰 관리 통일**
+**1. API 토큰 관리 통일** _ 작업완료
 - [ ] `services/api/partnerApi.js`에서 `localStorage.getItem('token')` 제거
 - [ ] `authApi`의 `getToken()` 함수 사용 또는 axios 인터셉터 활용
 - [ ] 토큰 키 불일치 해결 (`'token'` vs `'honest_cup_token'`)
