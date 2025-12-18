@@ -912,6 +912,7 @@ MVP는 3개월을 목표로 합니다.
  - TC _ 완료
  - Implementation
  - Refactory _ 완료
+ - Merge 완료
 
 **문서 버전**: 1.0 (MVP)  
 **최종 업데이트**: 2025-12-15
